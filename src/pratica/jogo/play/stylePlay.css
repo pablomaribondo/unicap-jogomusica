@@ -1,4 +1,41 @@
-.mainFxmlClass {
-
+.main {
+    -fx-background-color: #505050;
 }
 
+#description-stackpane {
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 20, 0, 0, 0);
+    -fx-background-color: #fff;
+}
+
+.description-scrollpane {
+    -fx-border-color: #fff;
+    -fx-background-color: #fff;    
+}
+
+#scrollpane .scroll-bar:vertical .track {
+    -fx-background-color:#fff;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+#scrollpane .scroll-bar:vertical .increment-button, 
+#scrollpane .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0;
+}
+
+#scrollpane .scroll-bar .increment-arrow,
+#scrollpane .scroll-bar .decrement-arrow {
+    -fx-shape: " ";	
+    -fx-padding:0;
+}
+
+#scrollpane .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}

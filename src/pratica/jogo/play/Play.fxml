@@ -6,8 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pratica.jogo.play.PlayController">
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="769.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pratica.jogo.play.PlayController">
     <stylesheets>
         <URL value="@stylePlay.css" />
     </stylesheets>
@@ -27,15 +28,16 @@
                 <Image url="@../images/rsz_sambapixel.png" />
             </image>
         </ImageView>
-      <ScrollPane fx:id="scrollPane" layoutX="40.0" layoutY="60.0" prefHeight="180.0" prefWidth="465.0">
+      <Label fx:id="question" layoutX="40.0" layoutY="40.0" prefHeight="20.0" prefWidth="465.0" text="Question" />
+      <StackPane id="description-stackpane" layoutX="40.0" layoutY="60.0" prefHeight="200.0" prefWidth="485.0" stylesheets="@stylePlay.css" />
+      <ScrollPane id="scrollpane" fx:id="scrollPane" layoutX="50.0" layoutY="70.0" prefHeight="180.0" prefWidth="465.0" styleClass="description-scrollpane">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0" stylesheets="@stylePlay.css">
                <children>
-                  <Label fx:id="txt" alignment="TOP_LEFT" prefHeight="400.0" prefWidth="452.0" text="Label" />
+                  <Label fx:id="txt" alignment="TOP_LEFT" prefHeight="400.0" prefWidth="451.0" styleClass="description-scrollpane" stylesheets="@stylePlay.css" text="Label" />
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="question" layoutX="40.0" layoutY="40.0" prefHeight="20.0" prefWidth="465.0" text="Question" />
     </children>
 </AnchorPane>

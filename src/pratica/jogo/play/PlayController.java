@@ -33,6 +33,8 @@ public class PlayController implements Initializable {
     private Label txt;
     @FXML
     private ScrollPane scrollPane;
+    @FXML
+    private Label question;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
