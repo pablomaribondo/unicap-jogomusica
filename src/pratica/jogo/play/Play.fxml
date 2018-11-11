@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pratica.jogo.play.PlayController">
-   <children>
-      <ImageView fx:id="img_map" fitHeight="316.0" fitWidth="769.0" layoutY="280.0" onMouseClicked="#move" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../map.png" />
-         </image></ImageView>
-      <ImageView fx:id="img_style" fitHeight="200.0" fitWidth="200.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../frevo.png" />
-         </image></ImageView>
-      <ImageView fx:id="img_character" fitHeight="59.0" fitWidth="36.0" layoutX="342.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../sambateste.png" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pratica.jogo.play.PlayController">
+    <stylesheets>
+        <URL value="@stylePlay.css" />
+    </stylesheets>
+    <children>
+        <ImageView fx:id="img_map" fitHeight="316.0" fitWidth="769.0" layoutY="280.0" onMouseClicked="#move" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/map.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="img_style" fitHeight="180.0" fitWidth="180.0" layoutX="549.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-music">
+            <image>
+                <Image url="@../images/frevo.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="img_character" fitHeight="97.0" fitWidth="104.0" layoutX="349.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/rsz_sambapixel.png" />
+            </image>
+        </ImageView>
+      <ScrollPane fx:id="scrollPane" layoutX="40.0" layoutY="60.0" prefHeight="180.0" prefWidth="465.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="txt" alignment="TOP_LEFT" prefHeight="400.0" prefWidth="452.0" text="Label" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label fx:id="question" layoutX="40.0" layoutY="40.0" prefHeight="20.0" prefWidth="465.0" text="Question" />
+    </children>
 </AnchorPane>
