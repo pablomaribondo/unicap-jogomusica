@@ -52,9 +52,9 @@ public class PlayController implements Initializable {
     private Button btn_showpicture;
 
     private boolean tipShown;
-    
+
     private Media media;
-    
+
     private MediaPlayer player;
     @FXML
     private Button btn_stopmusic;
@@ -94,8 +94,8 @@ public class PlayController implements Initializable {
         txt.setWrapText(true);
         animateText(txt, str);
         tipShown = false;
+        btn_stopmusic.setOnMouseClicked(null);
 
-        
     }
 
     public void roundImg() {
@@ -186,14 +186,26 @@ public class PlayController implements Initializable {
 
     @FXML
     private void playMusic(MouseEvent event) {
+        System.out.println("receba");
         media = new Media(this.getClass().getResource("/pratica/jogo/sounds/frevo.mp3").toExternalForm());
         player = new MediaPlayer(media);
         player.play();
+
+        btn_playmusic.setOnMouseClicked(null);
+        btn_stopmusic.setOnMouseClicked((MouseEvent e) -> {
+            stopMusic(e);
+        });
     }
 
     @FXML
     private void stopMusic(MouseEvent event) {
+        System.out.println("pare, pegue no bumbum");
         player.stop();
+
+        btn_playmusic.setOnMouseClicked((MouseEvent e) -> {
+            playMusic(e);
+        });
+        btn_stopmusic.setOnMouseClicked(null);
     }
 
     @FXML
@@ -204,6 +216,8 @@ public class PlayController implements Initializable {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Menu");
+
+        player.stop();
 
         stage.setScene(scene);
         stage.show();
