@@ -1,4 +1,4 @@
-package pratica.jogo.menu;
+package game.menu;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +32,7 @@ public class MenuController implements Initializable {
     @FXML
     private void play(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/pratica/jogo/play/Play.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/game/play/Play.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -45,7 +45,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void instructions(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/pratica/jogo/instructions/Instructions.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/game/instructions/Instructions.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -58,7 +58,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void pontuation(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/pratica/jogo/pontuation/Pontuation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/game/pontuation/Pontuation.fxml"));
 
         Scene scene = new Scene(root);
 

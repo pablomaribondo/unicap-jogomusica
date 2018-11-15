@@ -1,4 +1,4 @@
-package pratica.jogo.menu;
+package game.menu;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package pratica.jogo.pontuation;
+package game.instructions;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class PontuationController implements Initializable {
+public class InstructionsController implements Initializable {
 
     @FXML
     private Button btn_back;
@@ -25,7 +25,7 @@ public class PontuationController implements Initializable {
 
     @FXML
     private void back(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/pratica/jogo/menu/Menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/game/menu/Menu.fxml"));
 
         Scene scene = new Scene(root);
 

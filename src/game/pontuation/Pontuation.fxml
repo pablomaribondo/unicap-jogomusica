@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pratica.jogo.pontuation.PontuationController">
+<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="game.pontuation.PontuationController">
    <children>
       <Button fx:id="btn_back" layoutX="35.0" layoutY="540.0" onAction="#back" text="Voltar" />
    </children>

@@ -1,4 +1,4 @@
-package pratica.jogo.play;
+package game.play;
 
 public class MusicGenre {
 

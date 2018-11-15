@@ -1,4 +1,4 @@
-package pratica.jogo.play;
+package game.play;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -71,7 +70,7 @@ public class PlayController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        Font.loadFont(this.getClass().getResource("/pratica/jogo/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
+        Font.loadFont(this.getClass().getResource("/game/assets/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
         roundImg();
         String str = "Mussum Ipsum, cacilds vidis litro abertis. "
                 + "Leite de capivaris, leite de mula manquis sem cabeça. "
@@ -102,16 +101,16 @@ public class PlayController implements Initializable {
         animateText(description, str);
         hintShown = false;
         btn_stopMusic.setOnMouseClicked(null);
-        media = new Media(this.getClass().getResource("/pratica/jogo/sounds/frevo.mp3").toExternalForm());
+        media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
         player = new MediaPlayer(media);
         player.setVolume(0.8);
         volumeSlider.setValue(player.getVolume()*100);
         volumeSlider.valueProperty().addListener((Observable observable) -> {
             player.setVolume(volumeSlider.getValue()/100);
             if (player.getVolume() == 0) {
-                img_volume.setImage(new Image("/pratica/jogo/images/soundOffWhite.png"));
+                img_volume.setImage(new Image("/game/assets/images/soundOffWhite.png"));
             } else {
-                img_volume.setImage(new Image("/pratica/jogo/images/soundOnWhite.png"));
+                img_volume.setImage(new Image("/game/assets/images/soundOnWhite.png"));
             }
         });
         btn_nextQuestion.setVisible(false);
@@ -193,7 +192,7 @@ public class PlayController implements Initializable {
     @FXML
     private void showPicture(MouseEvent event) {
         if (!hintShown) {
-            img_hint.setImage(new Image("/pratica/jogo/images/frevo.png"));
+            img_hint.setImage(new Image("/game/assets/images/frevo.png"));
             roundImg();
             hintShown = true;
         }
@@ -201,7 +200,7 @@ public class PlayController implements Initializable {
 
     @FXML
     private void playMusic(MouseEvent event) {
-        media = new Media(this.getClass().getResource("/pratica/jogo/sounds/frevo.mp3").toExternalForm());
+        media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
         player = new MediaPlayer(media);
         player.play();
 
@@ -228,7 +227,7 @@ public class PlayController implements Initializable {
 
     @FXML
     private void menu(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(this.getClass().getResource("/pratica/jogo/menu/Menu.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("/game/menu/Menu.fxml"));
 
         Scene scene = new Scene(root);
 
