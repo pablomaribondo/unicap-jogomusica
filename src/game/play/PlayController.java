@@ -63,6 +63,10 @@ public class PlayController implements Initializable {
     @FXML
     private Label lbl_spot4;
     @FXML
+    private Label lbl_questionNumber;
+    @FXML
+    private Label lbl_points;
+    @FXML
     private Button btn_playMusic;
     @FXML
     private Button btn_stopMusic;
@@ -74,6 +78,7 @@ public class PlayController implements Initializable {
     private ProgressBar progressBar;
 
     private int questionNumber;
+    private int points;
     private boolean hintShown;
     private Media media;
     private MediaPlayer player;
@@ -81,6 +86,7 @@ public class PlayController implements Initializable {
     private ArrayList<ImageView> alternatives = new ArrayList();
     private ImageView characterTarget;
     private ImageView characterSource;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,6 +99,11 @@ public class PlayController implements Initializable {
         btn_nextQuestion.setVisible(false);
 
         roundImg();
+        
+        questionNumber = 1;
+        points = 0;
+        lbl_questionNumber.setText("Questão: " + questionNumber);
+        lbl_points.setText("Pontos: " + points);
 
         genreList.add(new MusicGenre("nome1", "desc1", "imgurl1", "soundurl", "spotname1", 321, 532));
         genreList.add(new MusicGenre("nome2", "desc2", "imgurl2", "soundur2", "spotname2", 507, 564));

@@ -83,5 +83,7 @@
       <Label fx:id="lbl_spot4" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="AUST" />
       <Label fx:id="lbl_spot3" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="MOSKOV" />
       <Label fx:id="lbl_spot2" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="AFROBEAT" />
+      <Label fx:id="lbl_questionNumber" layoutX="14.0" layoutY="626.0" prefHeight="20.0" prefWidth="120.0" text="Label" />
+      <Label fx:id="lbl_points" layoutX="14.0" layoutY="606.0" prefHeight="20.0" prefWidth="120.0" text="Label" />
     </children>
 </AnchorPane>
