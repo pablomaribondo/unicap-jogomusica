@@ -22,11 +22,6 @@
                 <Image url="@../images/map.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="img_hint" fitHeight="180.0" fitWidth="180.0" layoutX="545.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-music">
-         <image>
-            <Image url="@../images/questionmark.jpg" />
-         </image>
-        </ImageView>
         <ImageView fx:id="img_character" fitHeight="97.0" fitWidth="104.0" layoutX="192.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/rsz_sambapixel.png" />
@@ -36,8 +31,8 @@
          <font>
             <Font name="SansSerif Regular" size="16.0" />
          </font></Label>
-      <StackPane id="description-stackpane" layoutX="35.0" layoutY="60.0" prefHeight="180.0" prefWidth="485.0" stylesheets="@stylePlay.css" />
-      <ScrollPane id="scrollpane" layoutX="45.0" layoutY="70.0" prefHeight="160.0" prefWidth="465.0" styleClass="description-scrollpane">
+      <StackPane layoutX="32.0" layoutY="57.0" prefHeight="186.0" prefWidth="491.0" styleClass="stackPane" stylesheets="@stylePlay.css" />
+      <ScrollPane id="scrollpane" layoutX="42.0" layoutY="67.0" prefHeight="160.0" prefWidth="465.0" styleClass="description-scrollpane">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0" stylesheets="@stylePlay.css">
                <children>
@@ -46,12 +41,18 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Button id="btn_playmusic" fx:id="btn_playMusic" layoutX="750.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#playMusic" prefHeight="25.0" prefWidth="170.0" stylesheets="@stylePlay.css" text="TOCAR MÚSICA" />
-      <Button fx:id="btn_showPicture" layoutX="750.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" text="MOSTRAR FOTO" />
-      <Button id="btn_playmusic" fx:id="btn_stopMusic" layoutX="750.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="170.0" stylesheets="@stylePlay.css" text="PARAR MÚSICA" />
-      <Button fx:id="btn_menu" layoutX="750.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" text="MENU" />
-      <Button fx:id="btn_nextQuestion" layoutX="750.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#nextQuestion" prefHeight="25.0" prefWidth="170.0" text="PRÓXIMA PERGUNTA" />
+      <Button id="btn_playmusic" fx:id="btn_playMusic" layoutX="750.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#playMusic" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="TOCAR MÚSICA" />
+      <Button fx:id="btn_showPicture" layoutX="750.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MOSTRAR FOTO" />
+      <Button id="btn_playmusic" fx:id="btn_stopMusic" layoutX="750.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PARAR MÚSICA" />
+      <Button fx:id="btn_menu" layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MENU" />
+      <Button fx:id="btn_nextQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#nextQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PRÓXIMA PERGUNTA" />
       <Slider fx:id="volumeSlider" layoutX="780.0" layoutY="22.0" />
       <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="651.0" prefWidth="200.0" progress="0.0" />
+      <StackPane layoutX="542.0" layoutY="57.0" prefHeight="186.0" prefWidth="186.0" styleClass="stackPane" stylesheets="@stylePlay.css" />
+        <ImageView fx:id="img_hint" fitHeight="180.0" fitWidth="180.0" layoutX="545.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-hint">
+         <image>
+            <Image url="@../images/questionmark.png" />
+         </image>
+        </ImageView>
     </children>
 </AnchorPane>

@@ -106,14 +106,15 @@ public class PlayController implements Initializable {
         volumeSlider.valueProperty().addListener((Observable observable) -> {
             player.setVolume(volumeSlider.getValue()/100);
         });
+        btn_nextQuestion.setVisible(false);
 
     }
 
     public void roundImg() {
         // set a clip to apply rounded border to the original image.
         Rectangle clip = new Rectangle(img_hint.getFitWidth(), img_hint.getFitHeight());
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
+        clip.setArcWidth(40);
+        clip.setArcHeight(40);
         img_hint.setClip(clip);
 
         // snapshot the rounded image.
@@ -123,9 +124,6 @@ public class PlayController implements Initializable {
 
         // remove the rounding clip so that our effect can show through.
         img_hint.setClip(null);
-
-        // apply a shadow effect.
-        img_hint.setEffect(new DropShadow(20, Color.BLACK));
 
         // store the rounded image in the imageView.
         img_hint.setImage(image);
@@ -217,6 +215,7 @@ public class PlayController implements Initializable {
 
     @FXML
     private void nextQuestion(MouseEvent event) {
+        System.out.println("olar");
     }
 
     @FXML

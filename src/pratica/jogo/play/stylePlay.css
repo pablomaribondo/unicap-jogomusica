@@ -1,21 +1,23 @@
 .main {
     -fx-background-color: #505050;
+    -fx-font-family: "VCR OSD Mono";
 }
 
-#description-stackpane {
-    -fx-background-radius: 10;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 20, 0, 0, 0);
-    -fx-background-color: #fff;
+.stackPane {
+    -fx-background-radius: 20;
+    -fx-background-color: #398cc1;
+    -fx-border-width: 3px;
+    -fx-border-radius: 20;
+    -fx-border-color: #fff;
 }
 
 .description-scrollpane {
-    -fx-border-color: #fff;
-    -fx-background-color: #fff;
-    -fx-font-family: "VCR OSD Mono";    
+    -fx-border-color: #398cc1;
+    -fx-background-color: #398cc1;
 }
 
 #scrollpane .scroll-bar:vertical .track {
-    -fx-background-color:#fff;
+    -fx-background-color:#398cc1;
     -fx-border-color:transparent;
     -fx-background-radius: 0em;
     -fx-border-radius:2em;
@@ -35,22 +37,19 @@
 }
 
 #scrollpane .scroll-bar:vertical .thumb {
-    -fx-background-color:derive(black,90%);
+    -fx-background-color:#fff;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 
 }
 
 .button {
-    -fx-background-radius:20;
-    -fx-font-family: "VCR OSD Mono";
+    -fx-background-insets: 0;
     -fx-font-size: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 20, 0, 0, 0);
-    -fx-background-color: #398cc1;
     -fx-text-fill: #fff;
 }
 
 #questionTitle {
-    -fx-font-family: "VCR OSD Mono";
     -fx-font-size: 20px;
 }
+
