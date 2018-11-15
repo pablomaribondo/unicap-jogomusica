@@ -2,6 +2,7 @@ package game.play;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
@@ -44,76 +45,105 @@ public class PlayController implements Initializable {
     @FXML
     private ImageView img_volume;
     @FXML
+    private ImageView img_spot1;
+    @FXML
+    private ImageView img_spot2;
+    @FXML
+    private ImageView img_spot3;
+    @FXML
+    private ImageView img_spot4;
+    @FXML
     private Label description;
     @FXML
-    private Label question;
+    private Label lbl_spot1;
+    @FXML
+    private Label lbl_spot2;
+    @FXML
+    private Label lbl_spot3;
+    @FXML
+    private Label lbl_spot4;
     @FXML
     private Button btn_playMusic;
-    @FXML
-    private Button btn_showPicture;
     @FXML
     private Button btn_stopMusic;
     @FXML
     private Button btn_nextQuestion;
     @FXML
-    private Button btn_menu;
-    @FXML
     private Slider volumeSlider;
     @FXML
     private ProgressBar progressBar;
 
+    private int questionNumber;
     private boolean hintShown;
     private Media media;
     private MediaPlayer player;
-    
-    
+    private ArrayList<MusicGenre> genreList = new ArrayList();
+    private ArrayList<ImageView> alternatives = new ArrayList();
+    private ImageView characterTarget;
+    private ImageView characterSource;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         Font.loadFont(this.getClass().getResource("/game/assets/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
-        roundImg();
-        String str = "Mussum Ipsum, cacilds vidis litro abertis. "
-                + "Leite de capivaris, leite de mula manquis sem cabeça. "
-                + "Casamentiss faiz malandris se pirulitá. "
-                + "A ordem dos tratores não altera o pão duris. "
-                + "Não sou faixa preta cumpadi, sou preto inteiris, inteiris"
-                + "Leite de capivaris, leite de mula manquis sem cabeça. "
-                + "Casamentiss faiz malandris se pirulitá. "
-                + "A ordem dos tratores não altera o pão duris. "
-                + "Não sou faixa preta cumpadi, sou preto inteiris, inteiris"
-                + "Leite de capivaris, leite de mula manquis sem cabeça. "
-                + "Casamentiss faiz malandris se pirulitá. "
-                + "A ordem dos tratores não altera o pão duris. "
-                + "Não sou faixa preta cumpadi, sou preto inteiris, inteiris"
-                + "Leite de capivaris, leite de mula manquis sem cabeça. "
-                + "Casamentiss faiz malandris se pirulitá. "
-                + "A ordem dos tratores não altera o pão duris. "
-                + "Não sou faixa preta cumpadi, sou preto inteiris, inteiris"
-                + "Leite de capivaris, leite de mula manquis sem cabeça. "
-                + "Casamentiss faiz malandris se pirulitá. "
-                + "A ordem dos tratores não altera o pão duris. "
-                + "Não sou faixa preta cumpadi, sou preto inteiris, inteiris"
-                + "Leite de capivaris, leite de mula manquis sem cabeça. "
-                + "Casamentiss faiz malandris se pirulitá. "
-                + "A ordem dos tratores não altera o pão duris. "
-                + "Não sou faixa preta cumpadi, sou preto inteiris, inteiris";
+
         description.setWrapText(true);
-        animateText(description, str);
         hintShown = false;
         btn_stopMusic.setOnMouseClicked(null);
+        btn_nextQuestion.setVisible(false);
+
+        roundImg();
+
+        genreList.add(new MusicGenre("nome1", "desc1", "imgurl1", "soundurl", "spotname1", 321, 532));
+        genreList.add(new MusicGenre("nome2", "desc2", "imgurl2", "soundur2", "spotname2", 507, 564));
+        genreList.add(new MusicGenre("nome3", "desc3", "imgurl3", "soundur3", "spotname3", 662, 403));
+        genreList.add(new MusicGenre("nome4", "desc4", "imgurl4", "soundur4", "spotname4", 801, 508));
+
+        alternatives.add(img_spot1);
+        alternatives.add(img_spot2);
+        alternatives.add(img_spot3);
+        alternatives.add(img_spot4);
+
+        characterTarget = img_spot1;
+        img_character.setX(genreList.get(0).getSpotX());
+        img_character.setY(genreList.get(0).getSpotY());
+        img_spot1.setX(genreList.get(0).getSpotX());
+        img_spot1.setY(genreList.get(0).getSpotY());
+        lbl_spot1.setTranslateX(img_spot1.getX() - 40);
+        lbl_spot1.setTranslateY(img_spot1.getY() - 16);
+        lbl_spot1.setText(genreList.get(0).getSpotName());
+        img_spot2.setX(genreList.get(1).getSpotX());
+        img_spot2.setY(genreList.get(1).getSpotY());
+        lbl_spot2.setTranslateX(img_spot2.getX() - 40);
+        lbl_spot2.setTranslateY(img_spot2.getY() - 16);
+        lbl_spot2.setText(genreList.get(1).getSpotName());
+        img_spot3.setX(genreList.get(2).getSpotX());
+        img_spot3.setY(genreList.get(2).getSpotY());
+        lbl_spot3.setTranslateX(img_spot3.getX() - 40);
+        lbl_spot3.setTranslateY(img_spot3.getY() - 16);
+        lbl_spot3.setText(genreList.get(2).getSpotName());
+        img_spot4.setX(genreList.get(3).getSpotX());
+        img_spot4.setY(genreList.get(3).getSpotY());
+        lbl_spot4.setTranslateX(img_spot4.getX() - 40);
+        lbl_spot4.setTranslateY(img_spot4.getY() - 16);
+        lbl_spot4.setText(genreList.get(3).getSpotName());
+
+        String str = "Mussum Ipsum, cacilds vidis litro abertis.";
+        animateText(description, str);
+
         media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
         player = new MediaPlayer(media);
         player.setVolume(0.8);
-        volumeSlider.setValue(player.getVolume()*100);
+
+        volumeSlider.setValue(player.getVolume() * 100);
         volumeSlider.valueProperty().addListener((Observable observable) -> {
-            player.setVolume(volumeSlider.getValue()/100);
+            player.setVolume(volumeSlider.getValue() / 100);
             if (player.getVolume() == 0) {
                 img_volume.setImage(new Image("/game/assets/images/soundOffWhite.png"));
             } else {
                 img_volume.setImage(new Image("/game/assets/images/soundOnWhite.png"));
             }
         });
-        btn_nextQuestion.setVisible(false);
 
     }
 
@@ -167,26 +197,36 @@ public class PlayController implements Initializable {
 
     @FXML
     private void moveCharacter(MouseEvent event) throws InterruptedException {
+        characterSource = characterTarget;
+        characterTarget = (ImageView) event.getTarget();
         Path path = new Path();
         path.getElements().add(new MoveTo(img_character.getX(), img_character.getY()));
-        path.getElements().add(new LineTo(event.getX() - 200, event.getY() - 190));
+        path.getElements().add(new LineTo(event.getX(), event.getY()));
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.millis(2000));
         pathTransition.setPath(path);
         pathTransition.setNode(img_character);
         pathTransition.play();
-        img_character.setX(event.getX() - 200);
-        img_character.setY(event.getY() - 190);
-        img_map.setOnMouseClicked(null);
+        img_character.setX(event.getX());
+        img_character.setY(event.getY());
+        alternatives.forEach((alternative) -> {
+            alternative.setOnMouseClicked(null);
+        });
+        alternatives.remove(characterTarget);
         setTimeout(() -> {
-            img_map.setOnMouseClicked((MouseEvent e) -> {
-                try {
-                    moveCharacter(e);
-                } catch (InterruptedException exception) {
-                    System.err.println(exception.getMessage());
-                }
+            alternatives.forEach((alternative) -> {
+                alternative.setOnMouseClicked((MouseEvent e) -> {
+                    try {
+                        moveCharacter(e);
+                    } catch (InterruptedException exception) {
+                        System.err.println(exception.getMessage());
+                    }
+                });
             });
+            alternatives.add(characterTarget);
         }, 2000);
+        characterSource.setImage(new Image("/game/assets/images/mapPin.png"));
+        characterTarget.setImage(new Image("/game/assets/images/mapPinChosen.png"));
     }
 
     @FXML

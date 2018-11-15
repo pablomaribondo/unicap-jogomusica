@@ -17,17 +17,17 @@
         <URL value="@stylePlay.css" />
     </stylesheets>
     <children>
-        <ImageView fx:id="img_map" fitHeight="385.0" fitWidth="950.0" layoutY="301.0" onMouseClicked="#moveCharacter" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="img_map" fitHeight="385.0" fitWidth="950.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../assets/images/map.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="img_character" fitHeight="97.0" fitWidth="104.0" layoutX="192.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="img_character" fitHeight="97.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../assets/images/rsz_sambapixel.png" />
             </image>
         </ImageView>
-      <Label id="questionTitle" fx:id="question" alignment="CENTER" contentDisplay="CENTER" layoutY="17.0" prefHeight="20.0" prefWidth="900.0" stylesheets="@stylePlay.css" text="QUAL O ESTILO MUSICAL?">
+      <Label id="questionTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="17.0" prefHeight="20.0" prefWidth="900.0" stylesheets="@stylePlay.css" text="QUAL O ESTILO MUSICAL?">
          <font>
             <Font name="SansSerif Regular" size="16.0" />
          </font></Label>
@@ -42,11 +42,11 @@
         </content>
       </ScrollPane>
       <Button id="btn_playmusic" fx:id="btn_playMusic" layoutX="750.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#playMusic" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="TOCAR MÚSICA" />
-      <Button fx:id="btn_showPicture" layoutX="750.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MOSTRAR FOTO" />
+      <Button layoutX="750.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MOSTRAR FOTO" />
       <Button id="btn_playmusic" fx:id="btn_stopMusic" layoutX="750.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PARAR MÚSICA" />
-      <Button fx:id="btn_menu" layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MENU" />
+      <Button layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MENU" />
       <Button fx:id="btn_nextQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#nextQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PRÓXIMA PERGUNTA" />
-      <Slider fx:id="volumeSlider" layoutX="784.0" layoutY="22.0" />
+      <Slider fx:id="volumeSlider" layoutX="780.0" layoutY="22.0" />
       <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="651.0" prefWidth="200.0" progress="0.0" />
       <StackPane layoutX="542.0" layoutY="57.0" prefHeight="186.0" prefWidth="186.0" styleClass="stackPane" stylesheets="@stylePlay.css" />
         <ImageView fx:id="img_hint" fitHeight="180.0" fitWidth="180.0" layoutX="545.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-hint">
@@ -59,5 +59,29 @@
             <Image url="@../assets/images/soundOnWhite.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="img_spot1" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#moveCharacter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/mapPin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_spot4" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#moveCharacter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/mapPin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_spot3" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#moveCharacter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/mapPin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_spot2" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#moveCharacter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/mapPin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbl_spot1" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="BREGA" />
+      <Label fx:id="lbl_spot4" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="AUST" />
+      <Label fx:id="lbl_spot3" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="MOSKOV" />
+      <Label fx:id="lbl_spot2" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="AFROBEAT" />
     </children>
 </AnchorPane>

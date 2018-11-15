@@ -2,7 +2,6 @@ package game.play;
 
 public class MusicGenre {
 
-    private final int id;
     String name;
     private String description;
     private String imgUrl;
@@ -11,8 +10,7 @@ public class MusicGenre {
     private int spotX;
     private int spotY;
 
-    public MusicGenre(int id, String name, String description, String imgUrl, String soundUrl, String spotName, int spotX, int spotY) {
-        this.id = id;
+    public MusicGenre(String name, String description, String imgUrl, String soundUrl, String spotName, int spotX, int spotY) {
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
@@ -20,10 +18,6 @@ public class MusicGenre {
         this.spotName = spotName;
         this.spotX = spotX;
         this.spotY = spotY;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {

@@ -14,7 +14,6 @@
 .description-scrollpane {
     -fx-border-color: #398cc1;
     -fx-background-color: #398cc1;
-    -fx-text-fill: #fff;
 }
 
 #scrollpane .scroll-bar:vertical .track {
@@ -47,6 +46,11 @@
 .button {
     -fx-background-insets: 0;
     -fx-font-size: 15px;
+    -fx-text-fill: #fff;
+}
+
+.label {
+    -fx-font-size: 14px;
     -fx-text-fill: #fff;
 }
 
