@@ -3,24 +3,26 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="900.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pratica.jogo.play.PlayController">
+<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="950.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pratica.jogo.play.PlayController">
     <stylesheets>
         <URL value="@stylePlay.css" />
     </stylesheets>
     <children>
-        <ImageView fx:id="img_map" fitHeight="367.0" fitWidth="900.0" layoutY="324.0" onMouseClicked="#move" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="img_map" fitHeight="385.0" fitWidth="950.0" layoutY="301.0" onMouseClicked="#moveCharacter" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/map.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="img_style" fitHeight="180.0" fitWidth="180.0" layoutX="545.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-music">
+        <ImageView fx:id="img_hint" fitHeight="180.0" fitWidth="180.0" layoutX="545.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-music">
          <image>
             <Image url="@../images/questionmark.jpg" />
          </image>
@@ -35,18 +37,21 @@
             <Font name="SansSerif Regular" size="16.0" />
          </font></Label>
       <StackPane id="description-stackpane" layoutX="35.0" layoutY="60.0" prefHeight="180.0" prefWidth="485.0" stylesheets="@stylePlay.css" />
-      <ScrollPane id="scrollpane" fx:id="scrollPane" layoutX="45.0" layoutY="70.0" prefHeight="160.0" prefWidth="465.0" styleClass="description-scrollpane">
+      <ScrollPane id="scrollpane" layoutX="45.0" layoutY="70.0" prefHeight="160.0" prefWidth="465.0" styleClass="description-scrollpane">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0" stylesheets="@stylePlay.css">
                <children>
-                  <Label fx:id="txt" alignment="TOP_LEFT" prefHeight="400.0" prefWidth="451.0" styleClass="description-scrollpane" stylesheets="@stylePlay.css" />
+                  <Label fx:id="description" alignment="TOP_LEFT" prefHeight="400.0" prefWidth="451.0" styleClass="description-scrollpane" stylesheets="@stylePlay.css" />
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Button id="btn_playmusic" fx:id="btn_playmusic" layoutX="746.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#playMusic" prefHeight="25.0" prefWidth="130.0" style="-fx-background-radius: 50;" stylesheets="@stylePlay.css" text="TOCAR MUSICA" />
-      <Button fx:id="btn_showpicture" layoutX="746.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#showpicture" prefHeight="25.0" prefWidth="130.0" text="MOSTRAR FOTO" />
-      <Button id="btn_playmusic" fx:id="btn_stopmusic" layoutX="746.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="130.0" style="-fx-background-radius: 50;" stylesheets="@stylePlay.css" text="PARAR MUSICA" />
-      <Button fx:id="btn_menu" layoutX="746.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="130.0" text="MENU" />
+      <Button id="btn_playmusic" fx:id="btn_playMusic" layoutX="750.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#playMusic" prefHeight="25.0" prefWidth="170.0" stylesheets="@stylePlay.css" text="TOCAR MÚSICA" />
+      <Button fx:id="btn_showPicture" layoutX="750.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" text="MOSTRAR FOTO" />
+      <Button id="btn_playmusic" fx:id="btn_stopMusic" layoutX="750.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="170.0" stylesheets="@stylePlay.css" text="PARAR MÚSICA" />
+      <Button fx:id="btn_menu" layoutX="750.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" text="MENU" />
+      <Button fx:id="btn_nextQuestion" layoutX="750.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#nextQuestion" prefHeight="25.0" prefWidth="170.0" text="PRÓXIMA PERGUNTA" />
+      <Slider fx:id="volumeSlider" layoutX="780.0" layoutY="22.0" />
+      <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="651.0" prefWidth="200.0" progress="0.0" />
     </children>
 </AnchorPane>

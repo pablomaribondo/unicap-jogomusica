@@ -2,22 +2,24 @@ package pratica.jogo.play;
 
 public class MusicGenre {
 
-    private int id;
+    private final int id;
     String name;
     private String description;
     private String imgUrl;
     private String soundUrl;
     private String spotName;
-    private int[] spotXY;
+    private int spotX;
+    private int spotY;
 
-    public MusicGenre(int id, String name, String description, String imgUrl, String soundUrl, String spotName, int[] spotXY) {
+    public MusicGenre(int id, String name, String description, String imgUrl, String soundUrl, String spotName, int spotX, int spotY) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
         this.soundUrl = soundUrl;
         this.spotName = spotName;
-        this.spotXY = spotXY;
+        this.spotX = spotX;
+        this.spotY = spotY;
     }
 
     public int getId() {
@@ -64,12 +66,20 @@ public class MusicGenre {
         this.spotName = spotName;
     }
 
-    public int[] getSpotXY() {
-        return spotXY;
+    public int getSpotX() {
+        return spotX;
     }
 
-    public void setSpotXY(int[] spotXY) {
-        this.spotXY = spotXY;
+    public void setSpotX(int spotX) {
+        this.spotX = spotX;
+    }
+
+    public int getSpotY() {
+        return spotY;
+    }
+
+    public void setSpotY(int spotY) {
+        this.spotY = spotY;
     }
 
 }

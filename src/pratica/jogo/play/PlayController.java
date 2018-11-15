@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
 import javafx.animation.Transition;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,34 +39,36 @@ public class PlayController implements Initializable {
     @FXML
     private ImageView img_map;
     @FXML
-    private ImageView img_style;
+    private ImageView img_hint;
     @FXML
     private ImageView img_character;
     @FXML
-    private Label txt;
-    @FXML
-    private ScrollPane scrollPane;
+    private Label description;
     @FXML
     private Label question;
     @FXML
-    private Button btn_playmusic;
+    private Button btn_playMusic;
     @FXML
-    private Button btn_showpicture;
-
-    private boolean tipShown;
-
-    private Media media;
-
-    private MediaPlayer player;
+    private Button btn_showPicture;
     @FXML
-    private Button btn_stopmusic;
+    private Button btn_stopMusic;
+    @FXML
+    private Button btn_nextQuestion;
     @FXML
     private Button btn_menu;
+    @FXML
+    private Slider volumeSlider;
+    @FXML
+    private ProgressBar progressBar;
 
+    private boolean hintShown;
+    private Media media;
+    private MediaPlayer player;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        Font.loadFont(this.getClass().getResource("/pratica/jogo/fonts/pixelart.ttf").toExternalForm(), 12);
+        Font.loadFont(this.getClass().getResource("/pratica/jogo/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
         roundImg();
         String str = "Mussum Ipsum, cacilds vidis litro abertis. "
                 + "Leite de capivaris, leite de mula manquis sem cabeça. "
@@ -91,33 +95,40 @@ public class PlayController implements Initializable {
                 + "Casamentiss faiz malandris se pirulitá. "
                 + "A ordem dos tratores não altera o pão duris. "
                 + "Não sou faixa preta cumpadi, sou preto inteiris, inteiris";
-        txt.setWrapText(true);
-        animateText(txt, str);
-        tipShown = false;
-        btn_stopmusic.setOnMouseClicked(null);
+        description.setWrapText(true);
+        animateText(description, str);
+        hintShown = false;
+        btn_stopMusic.setOnMouseClicked(null);
+        media = new Media(this.getClass().getResource("/pratica/jogo/sounds/frevo.mp3").toExternalForm());
+        player = new MediaPlayer(media);
+        player.setVolume(0.8);
+        volumeSlider.setValue(player.getVolume()*100);
+        volumeSlider.valueProperty().addListener((Observable observable) -> {
+            player.setVolume(volumeSlider.getValue()/100);
+        });
 
     }
 
     public void roundImg() {
         // set a clip to apply rounded border to the original image.
-        Rectangle clip = new Rectangle(img_style.getFitWidth(), img_style.getFitHeight());
+        Rectangle clip = new Rectangle(img_hint.getFitWidth(), img_hint.getFitHeight());
         clip.setArcWidth(20);
         clip.setArcHeight(20);
-        img_style.setClip(clip);
+        img_hint.setClip(clip);
 
         // snapshot the rounded image.
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
-        WritableImage image = img_style.snapshot(parameters, null);
+        WritableImage image = img_hint.snapshot(parameters, null);
 
         // remove the rounding clip so that our effect can show through.
-        img_style.setClip(null);
+        img_hint.setClip(null);
 
         // apply a shadow effect.
-        img_style.setEffect(new DropShadow(20, Color.BLACK));
+        img_hint.setEffect(new DropShadow(20, Color.BLACK));
 
         // store the rounded image in the imageView.
-        img_style.setImage(image);
+        img_hint.setImage(image);
     }
 
     public void animateText(Label text, String string) {
@@ -136,7 +147,6 @@ public class PlayController implements Initializable {
             }
         };
         animation.play();
-
     }
 
     public static void setTimeout(Runnable runnable, int delay) {
@@ -151,8 +161,7 @@ public class PlayController implements Initializable {
     }
 
     @FXML
-    private void move(MouseEvent event) throws InterruptedException {
-
+    private void moveCharacter(MouseEvent event) throws InterruptedException {
         Path path = new Path();
         path.getElements().add(new MoveTo(img_character.getX(), img_character.getY()));
         path.getElements().add(new LineTo(event.getX() - 200, event.getY() - 190));
@@ -167,7 +176,7 @@ public class PlayController implements Initializable {
         setTimeout(() -> {
             img_map.setOnMouseClicked((MouseEvent e) -> {
                 try {
-                    move(e);
+                    moveCharacter(e);
                 } catch (InterruptedException exception) {
                     System.err.println(exception.getMessage());
                 }
@@ -176,36 +185,38 @@ public class PlayController implements Initializable {
     }
 
     @FXML
-    private void showpicture(MouseEvent event) {
-        if (!tipShown) {
-            img_style.setImage(new Image("/pratica/jogo/images/frevo.png"));
+    private void showPicture(MouseEvent event) {
+        if (!hintShown) {
+            img_hint.setImage(new Image("/pratica/jogo/images/frevo.png"));
             roundImg();
-            tipShown = true;
+            hintShown = true;
         }
     }
 
     @FXML
     private void playMusic(MouseEvent event) {
-        System.out.println("receba");
         media = new Media(this.getClass().getResource("/pratica/jogo/sounds/frevo.mp3").toExternalForm());
         player = new MediaPlayer(media);
         player.play();
 
-        btn_playmusic.setOnMouseClicked(null);
-        btn_stopmusic.setOnMouseClicked((MouseEvent e) -> {
+        btn_playMusic.setOnMouseClicked(null);
+        btn_stopMusic.setOnMouseClicked((MouseEvent e) -> {
             stopMusic(e);
         });
     }
 
     @FXML
     private void stopMusic(MouseEvent event) {
-        System.out.println("pare, pegue no bumbum");
         player.stop();
 
-        btn_playmusic.setOnMouseClicked((MouseEvent e) -> {
+        btn_playMusic.setOnMouseClicked((MouseEvent e) -> {
             playMusic(e);
         });
-        btn_stopmusic.setOnMouseClicked(null);
+        btn_stopMusic.setOnMouseClicked(null);
+    }
+
+    @FXML
+    private void nextQuestion(MouseEvent event) {
     }
 
     @FXML

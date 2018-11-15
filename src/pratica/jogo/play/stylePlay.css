@@ -10,7 +10,8 @@
 
 .description-scrollpane {
     -fx-border-color: #fff;
-    -fx-background-color: #fff;    
+    -fx-background-color: #fff;
+    -fx-font-family: "VCR OSD Mono";    
 }
 
 #scrollpane .scroll-bar:vertical .track {
@@ -42,9 +43,14 @@
 
 .button {
     -fx-background-radius:20;
-    -fx-font-family: "Pixel-Art";
+    -fx-font-family: "VCR OSD Mono";
+    -fx-font-size: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 20, 0, 0, 0);
+    -fx-background-color: #398cc1;
+    -fx-text-fill: #fff;
 }
 
 #questionTitle {
-    -fx-font-family: "Pixel-Art";
+    -fx-font-family: "VCR OSD Mono";
+    -fx-font-size: 20px;
 }
