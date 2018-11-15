@@ -43,6 +43,8 @@ public class PlayController implements Initializable {
     @FXML
     private ImageView img_character;
     @FXML
+    private ImageView img_volume;
+    @FXML
     private Label description;
     @FXML
     private Label question;
@@ -64,6 +66,7 @@ public class PlayController implements Initializable {
     private boolean hintShown;
     private Media media;
     private MediaPlayer player;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -105,6 +108,11 @@ public class PlayController implements Initializable {
         volumeSlider.setValue(player.getVolume()*100);
         volumeSlider.valueProperty().addListener((Observable observable) -> {
             player.setVolume(volumeSlider.getValue()/100);
+            if (player.getVolume() == 0) {
+                img_volume.setImage(new Image("/pratica/jogo/images/soundOffWhite.png"));
+            } else {
+                img_volume.setImage(new Image("/pratica/jogo/images/soundOnWhite.png"));
+            }
         });
         btn_nextQuestion.setVisible(false);
 

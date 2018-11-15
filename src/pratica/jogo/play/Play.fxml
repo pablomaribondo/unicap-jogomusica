@@ -46,7 +46,7 @@
       <Button id="btn_playmusic" fx:id="btn_stopMusic" layoutX="750.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PARAR MÚSICA" />
       <Button fx:id="btn_menu" layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MENU" />
       <Button fx:id="btn_nextQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#nextQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PRÓXIMA PERGUNTA" />
-      <Slider fx:id="volumeSlider" layoutX="780.0" layoutY="22.0" />
+      <Slider fx:id="volumeSlider" layoutX="784.0" layoutY="22.0" />
       <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="651.0" prefWidth="200.0" progress="0.0" />
       <StackPane layoutX="542.0" layoutY="57.0" prefHeight="186.0" prefWidth="186.0" styleClass="stackPane" stylesheets="@stylePlay.css" />
         <ImageView fx:id="img_hint" fitHeight="180.0" fitWidth="180.0" layoutX="545.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-hint">
@@ -54,5 +54,10 @@
             <Image url="@../images/questionmark.png" />
          </image>
         </ImageView>
+      <ImageView fx:id="img_volume" fitHeight="20.0" fitWidth="20.0" layoutX="750.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/soundOnWhite.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
