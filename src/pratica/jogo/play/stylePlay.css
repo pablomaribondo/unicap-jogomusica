@@ -39,3 +39,12 @@
     -fx-background-radius: 2em;
 
 }
+
+.button {
+    -fx-background-radius:20;
+    -fx-font-family: "Pixel-Art";
+}
+
+#questionTitle {
+    -fx-font-family: "Pixel-Art";
+}
