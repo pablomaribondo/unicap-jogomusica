@@ -37,8 +37,6 @@ import javafx.util.Duration;
 public class PlayController implements Initializable {
 
     @FXML
-    private ImageView img_map;
-    @FXML
     private ImageView img_hint;
     @FXML
     private ImageView img_character;
@@ -71,6 +69,8 @@ public class PlayController implements Initializable {
     @FXML
     private Button btn_stopMusic;
     @FXML
+    private Button btn_confirmQuestion;
+    @FXML
     private Button btn_nextQuestion;
     @FXML
     private Slider volumeSlider;
@@ -80,13 +80,13 @@ public class PlayController implements Initializable {
     private int questionNumber;
     private int points;
     private boolean hintShown;
+    private boolean arrived;
     private Media media;
     private MediaPlayer player;
     private ArrayList<MusicGenre> genreList = new ArrayList();
     private ArrayList<ImageView> alternatives = new ArrayList();
     private ImageView characterTarget;
     private ImageView characterSource;
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -95,27 +95,31 @@ public class PlayController implements Initializable {
 
         description.setWrapText(true);
         hintShown = false;
+        arrived = false;
         btn_stopMusic.setOnMouseClicked(null);
         btn_nextQuestion.setVisible(false);
+        btn_confirmQuestion.setVisible(false);
 
         roundImg();
-        
+
         questionNumber = 1;
         points = 0;
-        lbl_questionNumber.setText("Questão: " + questionNumber);
-        lbl_points.setText("Pontos: " + points);
+        lbl_questionNumber.setText("Questão: " + String.format("%02d", questionNumber));
+        lbl_points.setText("Pontos: " + String.format("%05d", points));
 
+        // tem que fazer uma função pra carregar esses dados do arquivo
         genreList.add(new MusicGenre("nome1", "desc1", "imgurl1", "soundurl", "spotname1", 321, 532));
         genreList.add(new MusicGenre("nome2", "desc2", "imgurl2", "soundur2", "spotname2", 507, 564));
         genreList.add(new MusicGenre("nome3", "desc3", "imgurl3", "soundur3", "spotname3", 662, 403));
         genreList.add(new MusicGenre("nome4", "desc4", "imgurl4", "soundur4", "spotname4", 801, 508));
 
+        // função pra carregar as alternativas
         alternatives.add(img_spot1);
         alternatives.add(img_spot2);
         alternatives.add(img_spot3);
         alternatives.add(img_spot4);
 
-        characterTarget = img_spot1;
+        // Tem que ir pra outra função
         img_character.setX(genreList.get(0).getSpotX());
         img_character.setY(genreList.get(0).getSpotY());
         img_spot1.setX(genreList.get(0).getSpotX());
@@ -139,6 +143,7 @@ public class PlayController implements Initializable {
         lbl_spot4.setTranslateY(img_spot4.getY() - 16);
         lbl_spot4.setText(genreList.get(3).getSpotName());
 
+        // Tem que rolar quando o brother acertar a questão
         String str = "Mussum Ipsum, cacilds vidis litro abertis.";
         animateText(description, str);
 
@@ -208,6 +213,7 @@ public class PlayController implements Initializable {
 
     @FXML
     private void moveCharacter(MouseEvent event) throws InterruptedException {
+        arrived = false;
         characterSource = characterTarget;
         characterTarget = (ImageView) event.getTarget();
         Path path = new Path();
@@ -235,9 +241,13 @@ public class PlayController implements Initializable {
                 });
             });
             alternatives.add(characterTarget);
+            arrived = true;
         }, 2000);
-        characterSource.setImage(new Image("/game/assets/images/mapPin.png"));
+        if (characterSource != null) {
+            characterSource.setImage(new Image("/game/assets/images/mapPin.png"));
+        }
         characterTarget.setImage(new Image("/game/assets/images/mapPinChosen.png"));
+        btn_confirmQuestion.setVisible(true);
     }
 
     @FXML
@@ -274,6 +284,16 @@ public class PlayController implements Initializable {
     @FXML
     private void nextQuestion(MouseEvent event) {
         System.out.println("olar");
+    }
+
+    @FXML
+    private void confirmQuestion(MouseEvent event) {
+        if (arrived) {
+            characterTarget.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
+            characterTarget.setOnMouseClicked(null);
+            alternatives.remove(characterTarget);
+            characterTarget = null;
+        }
     }
 
     @FXML
