@@ -274,6 +274,7 @@ public class PlayController implements Initializable {
     private void playMusic(MouseEvent event) {
         media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
         player = new MediaPlayer(media);
+        player.setVolume(volumeSlider.getValue() / 100);
         player.play();
 
         btn_playMusic.setOnMouseClicked(null);
