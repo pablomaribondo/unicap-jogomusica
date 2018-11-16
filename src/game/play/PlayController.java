@@ -3,6 +3,7 @@ package game.play;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
@@ -69,6 +70,8 @@ public class PlayController implements Initializable {
     @FXML
     private Button btn_stopMusic;
     @FXML
+    private Button btn_showHint;
+    @FXML
     private Button btn_confirmQuestion;
     @FXML
     private Button btn_nextQuestion;
@@ -78,7 +81,8 @@ public class PlayController implements Initializable {
     private ProgressBar progressBar;
 
     private int questionNumber;
-    private int points;
+    private int totalPoints;
+    private int questionPoints;
     private boolean hintShown;
     private boolean arrived;
     private Media media;
@@ -87,6 +91,7 @@ public class PlayController implements Initializable {
     private ArrayList<ImageView> alternatives = new ArrayList();
     private ImageView characterTarget;
     private ImageView characterSource;
+    private ImageView correctAnswer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,49 +108,24 @@ public class PlayController implements Initializable {
         roundImg();
 
         questionNumber = 1;
-        points = 0;
+        totalPoints = 0;
+        questionPoints = 100;
         lbl_questionNumber.setText("Questão: " + String.format("%02d", questionNumber));
-        lbl_points.setText("Pontos: " + String.format("%05d", points));
+        lbl_points.setText("Pontos: " + String.format("%04d", totalPoints));
 
         // tem que fazer uma função pra carregar esses dados do arquivo
         genreList.add(new MusicGenre("nome1", "desc1", "imgurl1", "soundurl", "spotname1", 321, 532));
         genreList.add(new MusicGenre("nome2", "desc2", "imgurl2", "soundur2", "spotname2", 507, 564));
         genreList.add(new MusicGenre("nome3", "desc3", "imgurl3", "soundur3", "spotname3", 662, 403));
         genreList.add(new MusicGenre("nome4", "desc4", "imgurl4", "soundur4", "spotname4", 801, 508));
-
-        // função pra carregar as alternativas
-        alternatives.add(img_spot1);
-        alternatives.add(img_spot2);
-        alternatives.add(img_spot3);
-        alternatives.add(img_spot4);
+        Collections.shuffle(genreList);
+        correctAnswer = img_spot1;
 
         // Tem que ir pra outra função
-        img_character.setX(genreList.get(0).getSpotX());
-        img_character.setY(genreList.get(0).getSpotY());
-        img_spot1.setX(genreList.get(0).getSpotX());
-        img_spot1.setY(genreList.get(0).getSpotY());
-        lbl_spot1.setTranslateX(img_spot1.getX() - 40);
-        lbl_spot1.setTranslateY(img_spot1.getY() - 16);
-        lbl_spot1.setText(genreList.get(0).getSpotName());
-        img_spot2.setX(genreList.get(1).getSpotX());
-        img_spot2.setY(genreList.get(1).getSpotY());
-        lbl_spot2.setTranslateX(img_spot2.getX() - 40);
-        lbl_spot2.setTranslateY(img_spot2.getY() - 16);
-        lbl_spot2.setText(genreList.get(1).getSpotName());
-        img_spot3.setX(genreList.get(2).getSpotX());
-        img_spot3.setY(genreList.get(2).getSpotY());
-        lbl_spot3.setTranslateX(img_spot3.getX() - 40);
-        lbl_spot3.setTranslateY(img_spot3.getY() - 16);
-        lbl_spot3.setText(genreList.get(2).getSpotName());
-        img_spot4.setX(genreList.get(3).getSpotX());
-        img_spot4.setY(genreList.get(3).getSpotY());
-        lbl_spot4.setTranslateX(img_spot4.getX() - 40);
-        lbl_spot4.setTranslateY(img_spot4.getY() - 16);
-        lbl_spot4.setText(genreList.get(3).getSpotName());
+        img_character.setX(genreList.get(1).getSpotX());
+        img_character.setY(genreList.get(1).getSpotY());
 
-        // Tem que rolar quando o brother acertar a questão
-        String str = "Mussum Ipsum, cacilds vidis litro abertis.";
-        animateText(description, str);
+        loadAlternatives();
 
         media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
         player = new MediaPlayer(media);
@@ -187,7 +167,7 @@ public class PlayController implements Initializable {
         final Animation animation;
         animation = new Transition() {
             {
-                setCycleDuration(Duration.millis(3000));
+                setCycleDuration(Duration.millis(2000));
             }
 
             @Override
@@ -209,6 +189,37 @@ public class PlayController implements Initializable {
                 System.err.println(exception.getMessage());
             }
         }).start();
+    }
+
+    private void loadAlternatives() {
+        alternatives.clear();
+        alternatives.add(img_spot1);
+        alternatives.add(img_spot2);
+        alternatives.add(img_spot3);
+        alternatives.add(img_spot4);
+        Collections.shuffle(alternatives);
+        Collections.shuffle(genreList);
+        correctAnswer = img_spot1;
+        img_spot1.setX(genreList.get(0).getSpotX());
+        img_spot1.setY(genreList.get(0).getSpotY());
+        lbl_spot1.setTranslateX(img_spot1.getX() - 40);
+        lbl_spot1.setTranslateY(img_spot1.getY() - 16);
+        lbl_spot1.setText(genreList.get(0).getSpotName());
+        img_spot2.setX(genreList.get(1).getSpotX());
+        img_spot2.setY(genreList.get(1).getSpotY());
+        lbl_spot2.setTranslateX(img_spot2.getX() - 40);
+        lbl_spot2.setTranslateY(img_spot2.getY() - 16);
+        lbl_spot2.setText(genreList.get(1).getSpotName());
+        img_spot3.setX(genreList.get(2).getSpotX());
+        img_spot3.setY(genreList.get(2).getSpotY());
+        lbl_spot3.setTranslateX(img_spot3.getX() - 40);
+        lbl_spot3.setTranslateY(img_spot3.getY() - 16);
+        lbl_spot3.setText(genreList.get(2).getSpotName());
+        img_spot4.setX(genreList.get(3).getSpotX());
+        img_spot4.setY(genreList.get(3).getSpotY());
+        lbl_spot4.setTranslateX(img_spot4.getX() - 40);
+        lbl_spot4.setTranslateY(img_spot4.getY() - 16);
+        lbl_spot4.setText(genreList.get(3).getSpotName());
     }
 
     @FXML
@@ -283,16 +294,64 @@ public class PlayController implements Initializable {
 
     @FXML
     private void nextQuestion(MouseEvent event) {
-        System.out.println("olar");
+        player.stop();
+        hintShown = false;
+        arrived = false;
+        questionPoints = 100;
+        Collections.shuffle(genreList);
+        lbl_questionNumber.setText("Questão: " + String.format("%02d", ++questionNumber));
+        description.setText("");
+        img_hint.setImage(new Image("/game/assets/images/questionmark.png"));
+        roundImg();
+        btn_showHint.setOnMouseClicked((MouseEvent e) -> {
+            showPicture(e);
+        });
+        btn_playMusic.setOnMouseClicked((MouseEvent e) -> {
+            playMusic(e);
+        });
+        loadAlternatives();
+        alternatives.forEach((alternative) -> {
+            alternative.setOnMouseClicked((MouseEvent e) -> {
+                try {
+                    moveCharacter(e);
+                } catch (InterruptedException exception) {
+                    System.err.println(exception.getMessage());
+                }
+            });
+            alternative.setImage(new Image("/game/assets/images/mapPin.png"));
+        });
+        btn_nextQuestion.setVisible(false);
     }
 
     @FXML
     private void confirmQuestion(MouseEvent event) {
         if (arrived) {
-            characterTarget.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
-            characterTarget.setOnMouseClicked(null);
-            alternatives.remove(characterTarget);
-            characterTarget = null;
+            if (!characterTarget.equals(correctAnswer)) {
+                characterTarget.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
+                characterTarget.setOnMouseClicked(null);
+                alternatives.remove(characterTarget);
+                characterTarget = null;
+                questionPoints -= 25;
+            } else {
+                alternatives.remove(characterTarget);
+                alternatives.forEach((alternative) -> {
+                    alternative.setOnMouseClicked(null);
+                    alternative.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
+                });
+                String str = "Mussum Ipsum, cacilds vidis litro abertis. Aserto miseravi";
+                animateText(description, str);
+                btn_confirmQuestion.setVisible(false);
+                btn_showHint.setOnMouseClicked(null);
+                if (hintShown) {
+                    totalPoints += questionPoints - 15;
+                } else {
+                    totalPoints += questionPoints;
+                }
+                lbl_points.setText("Pontos: " + String.format("%04d", totalPoints));
+                setTimeout(() -> {
+                    btn_nextQuestion.setVisible(true);
+                }, 1000);
+            }
         }
     }
 

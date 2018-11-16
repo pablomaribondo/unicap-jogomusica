@@ -42,7 +42,7 @@
         </content>
       </ScrollPane>
       <Button id="btn_playmusic" fx:id="btn_playMusic" layoutX="750.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#playMusic" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="TOCAR MÚSICA" />
-      <Button layoutX="750.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MOSTRAR FOTO" />
+      <Button fx:id="btn_showHint" layoutX="750.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MOSTRAR FOTO" />
       <Button id="btn_playmusic" fx:id="btn_stopMusic" layoutX="750.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PARAR MÚSICA" />
       <Button layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="MENU" />
       <Button fx:id="btn_nextQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#nextQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="stackPane" stylesheets="@stylePlay.css" text="PRÓXIMA PERGUNTA" />
