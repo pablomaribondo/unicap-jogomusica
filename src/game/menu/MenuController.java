@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 public class MenuController implements Initializable {
 
@@ -36,11 +37,17 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
-        Menu.player = new MediaPlayer(Menu.media);
-        Menu.player.setVolume(0.8);
-        Menu.player.play();
+        System.out.println(Menu.musicPlaying);
+        if (!Menu.musicPlaying) {
+            Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
+            Menu.player = new MediaPlayer(Menu.media);
+            Menu.player.setVolume(0.8);
+            Menu.player.setOnEndOfMedia(() -> {
+                Menu.player.seek(Duration.ZERO);
+            });
+            Menu.player.play();
+            Menu.musicPlaying = true;
+        }
         volumeSlider.setValue(Menu.player.getVolume() * 100);
         volumeSlider.valueProperty().addListener((Observable observable) -> {
             Menu.player.setVolume(volumeSlider.getValue() / 100);
@@ -62,9 +69,9 @@ public class MenuController implements Initializable {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Play");
-        
+
         Menu.player.stop();
-        
+
         stage.setScene(scene);
         stage.show();
     }
