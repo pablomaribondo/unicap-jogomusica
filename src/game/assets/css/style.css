@@ -3,7 +3,7 @@
     -fx-font-family: "VCR OSD Mono";
 }
 
-.stackPane {
+.round {
     -fx-background-radius: 20;
     -fx-background-color: #398cc1;
     -fx-border-width: 3px;
