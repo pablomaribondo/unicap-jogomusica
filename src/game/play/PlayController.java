@@ -126,11 +126,10 @@ public class PlayController implements Initializable {
 
         loadAlternatives();
 
-        Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
-        Menu.player = new MediaPlayer(Menu.media);
-        Menu.player.setVolume(0.8);
-
         volumeSlider.setValue(Menu.player.getVolume() * 100);
+        if (Menu.player.getVolume() == 0) {
+            img_volume.setImage(new Image("/game/assets/images/soundOffWhite.png"));
+        }
         volumeSlider.valueProperty().addListener((Observable observable) -> {
             Menu.player.setVolume(volumeSlider.getValue() / 100);
             if (Menu.player.getVolume() == 0) {
