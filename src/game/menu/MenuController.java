@@ -49,6 +49,9 @@ public class MenuController implements Initializable {
             Menu.musicPlaying = true;
         }
         volumeSlider.setValue(Menu.player.getVolume() * 100);
+        if (Menu.player.getVolume() == 0) {
+            img_volume.setImage(new Image("/game/assets/images/soundOffWhite.png"));
+        }
         volumeSlider.valueProperty().addListener((Observable observable) -> {
             Menu.player.setVolume(volumeSlider.getValue() / 100);
             if (Menu.player.getVolume() == 0) {
