@@ -1,5 +1,6 @@
 package game.play;
 
+import game.menu.Menu;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -85,8 +86,6 @@ public class PlayController implements Initializable {
     private int questionPoints;
     private boolean hintShown;
     private boolean arrived;
-    private Media media;
-    private MediaPlayer player;
     private ArrayList<MusicGenre> genreList = new ArrayList();
     private ArrayList<ImageView> alternatives = new ArrayList();
     private ImageView characterTarget;
@@ -127,14 +126,14 @@ public class PlayController implements Initializable {
 
         loadAlternatives();
 
-        media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
-        player = new MediaPlayer(media);
-        player.setVolume(0.8);
+        Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
+        Menu.player = new MediaPlayer(Menu.media);
+        Menu.player.setVolume(0.8);
 
-        volumeSlider.setValue(player.getVolume() * 100);
+        volumeSlider.setValue(Menu.player.getVolume() * 100);
         volumeSlider.valueProperty().addListener((Observable observable) -> {
-            player.setVolume(volumeSlider.getValue() / 100);
-            if (player.getVolume() == 0) {
+            Menu.player.setVolume(volumeSlider.getValue() / 100);
+            if (Menu.player.getVolume() == 0) {
                 img_volume.setImage(new Image("/game/assets/images/soundOffWhite.png"));
             } else {
                 img_volume.setImage(new Image("/game/assets/images/soundOnWhite.png"));
@@ -272,10 +271,10 @@ public class PlayController implements Initializable {
 
     @FXML
     private void playMusic(MouseEvent event) {
-        media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
-        player = new MediaPlayer(media);
-        player.setVolume(volumeSlider.getValue() / 100);
-        player.play();
+        Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
+        Menu.player = new MediaPlayer(Menu.media);
+        Menu.player.setVolume(volumeSlider.getValue() / 100);
+        Menu.player.play();
 
         btn_playMusic.setOnMouseClicked(null);
         btn_stopMusic.setOnMouseClicked((MouseEvent e) -> {
@@ -285,7 +284,7 @@ public class PlayController implements Initializable {
 
     @FXML
     private void stopMusic(MouseEvent event) {
-        player.stop();
+        Menu.player.stop();
 
         btn_playMusic.setOnMouseClicked((MouseEvent e) -> {
             playMusic(e);
@@ -295,7 +294,7 @@ public class PlayController implements Initializable {
 
     @FXML
     private void nextQuestion(MouseEvent event) {
-        player.stop();
+        Menu.player.stop();
         hintShown = false;
         arrived = false;
         questionPoints = 100;
@@ -365,7 +364,7 @@ public class PlayController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Menu");
 
-        player.stop();
+        Menu.player.stop();
 
         stage.setScene(scene);
         stage.show();
