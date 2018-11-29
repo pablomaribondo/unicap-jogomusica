@@ -90,22 +90,24 @@ public class PlayController implements Initializable {
     private ArrayList<ImageView> alternatives = new ArrayList();
     private ImageView characterTarget;
     private ImageView characterSource;
-    private ImageView correctAnswer;
+    private ImageView correctAnswerSpot;
+    private MusicGenre correctAnswerMusicGenre;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        // Carrega a fonte
         Font.loadFont(this.getClass().getResource("/game/assets/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
-
+        
+        // Deixa as imagens arredondadas
+        roundImg();
+        
+        // Inicializa
         description.setWrapText(true);
         hintShown = false;
         arrived = false;
         btn_stopMusic.setOnMouseClicked(null);
         btn_nextQuestion.setVisible(false);
         btn_confirmQuestion.setVisible(false);
-
-        roundImg();
-
         questionNumber = 1;
         totalPoints = 0;
         questionPoints = 100;
@@ -113,17 +115,19 @@ public class PlayController implements Initializable {
         lbl_points.setText("Pontos: " + String.format("%04d", totalPoints));
 
         // tem que fazer uma função pra carregar esses dados do arquivo
-        genreList.add(new MusicGenre("nome1", "desc1", "imgurl1", "soundurl", "spotname1", 321, 532));
-        genreList.add(new MusicGenre("nome2", "desc2", "imgurl2", "soundur2", "spotname2", 507, 564));
-        genreList.add(new MusicGenre("nome3", "desc3", "imgurl3", "soundur3", "spotname3", 662, 403));
-        genreList.add(new MusicGenre("nome4", "desc4", "imgurl4", "soundur4", "spotname4", 801, 508));
+        genreList.add(new MusicGenre("Arábia Saudita", "Arábia Saudita descrição", "imgurl1", "soundurl", "/game/assets/images/Arabe.png", 550, 445));
+        genreList.add(new MusicGenre("Brasil", "Brasil descrição", "imgurl2", "soundur2", "/game/assets/images/Sambista.png", 310, 555));
+        genreList.add(new MusicGenre("Havaí", "Havaí descrição", "imgurl3", "soundur3", "/game/assets/images/Havaiana.png", 23, 450));
+        genreList.add(new MusicGenre("Índia", "Índia descrição", "imgurl4", "soundur4", "/game/assets/images/Indiana.png", 638, 458));
+        genreList.add(new MusicGenre("Irlanda", "Irlanda descrição", "imgurl5", "soundur5", "/game/assets/images/Irlandesa.png", 415, 361));
         Collections.shuffle(genreList);
-        correctAnswer = img_spot1;
+        
+        // Inicializa a personagem
+        img_character.setImage(new Image("/game/assets/images/MainCharacter.png"));
+        img_character.setX(genreList.get(1).getSpotX() + 40);
+        img_character.setY(genreList.get(1).getSpotY() - 50);
 
-        // Tem que ir pra outra função
-        img_character.setX(genreList.get(1).getSpotX());
-        img_character.setY(genreList.get(1).getSpotY());
-
+        // Carrega as alternativas
         loadAlternatives();
 
         volumeSlider.setValue(Menu.player.getVolume() * 100);
@@ -197,27 +201,28 @@ public class PlayController implements Initializable {
         alternatives.add(img_spot4);
         Collections.shuffle(alternatives);
         Collections.shuffle(genreList);
-        correctAnswer = img_spot1;
+        correctAnswerSpot = img_spot1;
+        correctAnswerMusicGenre = genreList.get(0);
         img_spot1.setX(genreList.get(0).getSpotX());
         img_spot1.setY(genreList.get(0).getSpotY());
-        lbl_spot1.setTranslateX(img_spot1.getX() - 40);
+        lbl_spot1.setTranslateX(img_spot1.getX() - 53);
         lbl_spot1.setTranslateY(img_spot1.getY() - 16);
-        lbl_spot1.setText(genreList.get(0).getSpotName());
+        lbl_spot1.setText(genreList.get(0).getName());
         img_spot2.setX(genreList.get(1).getSpotX());
         img_spot2.setY(genreList.get(1).getSpotY());
-        lbl_spot2.setTranslateX(img_spot2.getX() - 40);
+        lbl_spot2.setTranslateX(img_spot2.getX() - 53);
         lbl_spot2.setTranslateY(img_spot2.getY() - 16);
-        lbl_spot2.setText(genreList.get(1).getSpotName());
+        lbl_spot2.setText(genreList.get(1).getName());
         img_spot3.setX(genreList.get(2).getSpotX());
         img_spot3.setY(genreList.get(2).getSpotY());
-        lbl_spot3.setTranslateX(img_spot3.getX() - 40);
+        lbl_spot3.setTranslateX(img_spot3.getX() - 53);
         lbl_spot3.setTranslateY(img_spot3.getY() - 16);
-        lbl_spot3.setText(genreList.get(2).getSpotName());
+        lbl_spot3.setText(genreList.get(2).getName());
         img_spot4.setX(genreList.get(3).getSpotX());
         img_spot4.setY(genreList.get(3).getSpotY());
-        lbl_spot4.setTranslateX(img_spot4.getX() - 40);
+        lbl_spot4.setTranslateX(img_spot4.getX() - 53);
         lbl_spot4.setTranslateY(img_spot4.getY() - 16);
-        lbl_spot4.setText(genreList.get(3).getSpotName());
+        lbl_spot4.setText(genreList.get(3).getName());
     }
 
     @FXML
@@ -227,14 +232,14 @@ public class PlayController implements Initializable {
         characterTarget = (ImageView) event.getTarget();
         Path path = new Path();
         path.getElements().add(new MoveTo(img_character.getX(), img_character.getY()));
-        path.getElements().add(new LineTo(event.getX(), event.getY()));
+        path.getElements().add(new LineTo(event.getX() + 40, event.getY() - 50));
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.millis(2000));
         pathTransition.setPath(path);
         pathTransition.setNode(img_character);
         pathTransition.play();
-        img_character.setX(event.getX());
-        img_character.setY(event.getY());
+        img_character.setX(event.getX() + 40);
+        img_character.setY(event.getY() - 50);
         alternatives.forEach((alternative) -> {
             alternative.setOnMouseClicked(null);
         });
@@ -325,9 +330,10 @@ public class PlayController implements Initializable {
     @FXML
     private void confirmQuestion(MouseEvent event) {
         if (arrived) {
-            if (!characterTarget.equals(correctAnswer)) {
+            if (!characterTarget.equals(correctAnswerSpot)) {
                 characterTarget.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
                 characterTarget.setOnMouseClicked(null);
+                animateText(description, "Você errou! Tente novamente.");
                 alternatives.remove(characterTarget);
                 characterTarget = null;
                 questionPoints -= 25;
@@ -337,8 +343,8 @@ public class PlayController implements Initializable {
                     alternative.setOnMouseClicked(null);
                     alternative.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
                 });
-                String str = "Mussum Ipsum, cacilds vidis litro abertis. Aserto miseravi";
-                animateText(description, str);
+                animateText(description, correctAnswerMusicGenre.getDescription());
+                img_character.setImage(new Image(correctAnswerMusicGenre.getOutfitUrl()));
                 btn_confirmQuestion.setVisible(false);
                 btn_showHint.setOnMouseClicked(null);
                 if (hintShown) {

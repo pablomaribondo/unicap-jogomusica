@@ -8,10 +8,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="950.0" styleClass="main" stylesheets="@../assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.menu.MenuController">
     <children>
-        <Button fx:id="btn_play" layoutX="25.0" layoutY="420.0" onAction="#play" styleClass="round" stylesheets="@../assets/css/style.css" text="Jogar" />
-        <Button fx:id="btn_instructions" layoutX="25.0" layoutY="460.0" onAction="#instructions" styleClass="round" stylesheets="@../assets/css/style.css" text="Instruções" />
-        <Button fx:id="btn_pontuation" layoutX="25.0" layoutY="500.0" onAction="#pontuation" styleClass="round" stylesheets="@../assets/css/style.css" text="Pontuação" />
-        <Button fx:id="btn_exit" layoutX="25.0" layoutY="540.0" onAction="#exit" styleClass="round" stylesheets="@../assets/css/style.css" text="Sair" />
+        <Button fx:id="btn_play" layoutX="62.0" layoutY="411.0" onAction="#play" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Jogar" />
+        <Button fx:id="btn_instructions" layoutX="62.0" layoutY="471.0" onAction="#instructions" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Instruções" />
+        <Button fx:id="btn_pontuation" layoutX="62.0" layoutY="531.0" onAction="#pontuation" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Pontuação" />
+        <Button fx:id="btn_exit" layoutX="62.0" layoutY="591.0" onAction="#exit" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Sair" />
         <Slider fx:id="volumeSlider" layoutX="780.0" layoutY="22.0" />
         <ImageView fx:id="img_volume" fitHeight="20.0" fitWidth="20.0" layoutX="750.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
             <image>

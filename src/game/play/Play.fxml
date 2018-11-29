@@ -20,7 +20,7 @@
         </ImageView>
         <ImageView fx:id="img_character" fitHeight="97.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../assets/images/rsz_sambapixel.png" />
+                <Image url="@../assets/images/MainCharacter.png" />
             </image>
         </ImageView>
       <Label id="questionTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="17.0" prefHeight="25.0" prefWidth="950.0" stylesheets="@../assets/css/style.css" text="Qual o estilo musical?">
@@ -75,10 +75,10 @@
             <Image url="@../assets/images/mapPin.png" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_spot1" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="BREGA" />
-      <Label fx:id="lbl_spot4" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="AUST" />
-      <Label fx:id="lbl_spot3" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="MOSKOV" />
-      <Label fx:id="lbl_spot2" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="AFROBEAT" />
+      <Label fx:id="lbl_spot1" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="BREGA" textAlignment="CENTER" />
+      <Label fx:id="lbl_spot4" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="AUST" textAlignment="CENTER" />
+      <Label fx:id="lbl_spot3" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="MOSKOV" textAlignment="CENTER" />
+      <Label fx:id="lbl_spot2" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="AFROBEAT" textAlignment="CENTER" />
       <Label fx:id="lbl_questionNumber" layoutX="14.0" layoutY="626.0" prefHeight="20.0" prefWidth="120.0" text="Questao" />
       <Label fx:id="lbl_points" layoutX="14.0" layoutY="606.0" prefHeight="20.0" prefWidth="120.0" text="Pontos" />
       <Button fx:id="btn_confirmQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#confirmQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Confirmar" />
