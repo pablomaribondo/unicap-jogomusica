@@ -12,8 +12,7 @@ public class Menu extends Application {
     
     public static Media media;
     public static MediaPlayer player;
-    public static boolean musicPlaying = false;
-    
+        
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));

@@ -37,7 +37,7 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (!Menu.musicPlaying) {
+        if (Menu.player == null) {
             Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
             Menu.player = new MediaPlayer(Menu.media);
             Menu.player.setVolume(0.8);
@@ -45,7 +45,6 @@ public class MenuController implements Initializable {
                 Menu.player.seek(Duration.ZERO);
             });
             Menu.player.play();
-            Menu.musicPlaying = true;
         }
         volumeSlider.setValue(Menu.player.getVolume() * 100);
         if (Menu.player.getVolume() == 0) {
