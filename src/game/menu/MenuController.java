@@ -1,8 +1,16 @@
 package game.menu;
 
+import game.play.MusicGenre;
+import game.play.PlayController;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +45,30 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        BufferedReader br = null;
+        try {
+            String line = "";
+            String cvsSplitBy = ";";
+            String csvFile = new File(".").getCanonicalPath() + "/src/game/data/musicGenres.csv";
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+                // use comma as separator
+                String[] musicGenre = line.split(cvsSplitBy);
+                MusicGenre mg = new MusicGenre(musicGenre[0], musicGenre[1], musicGenre[2], musicGenre[3], musicGenre[4], Integer.valueOf(musicGenre[5]), Integer.valueOf(musicGenre[6]));
+                PlayController.genreList.add(mg);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         if (Menu.player == null) {
             Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
             Menu.player = new MediaPlayer(Menu.media);

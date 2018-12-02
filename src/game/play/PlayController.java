@@ -86,7 +86,7 @@ public class PlayController implements Initializable {
     private int questionPoints;
     private boolean hintShown;
     private boolean arrived;
-    private ArrayList<MusicGenre> genreList = new ArrayList();
+    public static ArrayList<MusicGenre> genreList = new ArrayList();
     private ArrayList<ImageView> alternatives = new ArrayList();
     private ImageView characterTarget;
     private ImageView characterSource;
@@ -114,16 +114,10 @@ public class PlayController implements Initializable {
         lbl_questionNumber.setText("Questão: " + String.format("%02d", questionNumber));
         lbl_points.setText("Pontos: " + String.format("%04d", totalPoints));
 
-        // tem que fazer uma função pra carregar esses dados do arquivo
-        genreList.add(new MusicGenre("Arábia Saudita", "Arábia Saudita descrição", "imgurl1", "soundurl", "/game/assets/images/Arabe.png", 550, 445));
-        genreList.add(new MusicGenre("Brasil", "Brasil descrição", "imgurl2", "soundur2", "/game/assets/images/Sambista.png", 310, 555));
-        genreList.add(new MusicGenre("Havaí", "Havaí descrição", "imgurl3", "soundur3", "/game/assets/images/Havaiana.png", 23, 450));
-        genreList.add(new MusicGenre("Índia", "Índia descrição", "imgurl4", "soundur4", "/game/assets/images/Indiana.png", 638, 458));
-        genreList.add(new MusicGenre("Irlanda", "Irlanda descrição", "imgurl5", "soundur5", "/game/assets/images/Irlandesa.png", 415, 361));
         Collections.shuffle(genreList);
         
         // Inicializa a personagem
-        img_character.setImage(new Image("/game/assets/images/MainCharacter.png"));
+        img_character.setImage(new Image("/game/assets/images/mainCharacter.png"));
         img_character.setX(genreList.get(1).getSpotX() + 40);
         img_character.setY(genreList.get(1).getSpotY() - 50);
 
