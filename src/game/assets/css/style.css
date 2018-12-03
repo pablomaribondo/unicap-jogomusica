@@ -73,3 +73,12 @@
     -fx-stroke-width: 2;
 }
 
+.label-spot .text {
+    -fx-font-size: 15px;
+    -fx-stroke: #4e4e4e;
+    -fx-stroke-width: 0.3;
+}
+
+#finishTitle {
+    -fx-font-size: 30px;
+}

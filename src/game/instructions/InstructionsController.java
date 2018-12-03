@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -23,8 +22,6 @@ import javafx.stage.Stage;
 public class InstructionsController implements Initializable {
 
     @FXML
-    private Button btn_back;
-    @FXML
     private Slider volumeSlider;
     @FXML
     private ImageView img_volume;
@@ -33,7 +30,7 @@ public class InstructionsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         volumeSlider.setValue(Menu.player.getVolume() * 100);
         if (Menu.player.getVolume() == 0) {
             img_volume.setImage(new Image("/game/assets/images/soundOffWhite.png"));

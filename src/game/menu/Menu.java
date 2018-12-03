@@ -10,16 +10,17 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Menu extends Application {
-    
+
     public static Media media;
     public static MediaPlayer player;
-        
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-        
+
+        // Carrega a fonte
         Font.loadFont(this.getClass().getResource("/game/assets/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
-                
+
         Scene scene = new Scene(root);
         stage.setTitle("Menu");
         stage.setScene(scene);
@@ -29,5 +30,5 @@ public class Menu extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

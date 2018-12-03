@@ -75,16 +75,16 @@
             <Image url="@../assets/images/mapPin.png" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_spot1" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="BREGA" textAlignment="CENTER" />
-      <Label fx:id="lbl_spot4" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="AUST" textAlignment="CENTER" />
-      <Label fx:id="lbl_spot3" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="MOSKOV" textAlignment="CENTER" />
-      <Label fx:id="lbl_spot2" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="AFROBEAT" textAlignment="CENTER" />
+      <Label fx:id="lbl_spot1" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" styleClass="label-spot" stylesheets="@../assets/css/style.css" text="BREGA" textAlignment="CENTER" />
+      <Label fx:id="lbl_spot4" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" styleClass="label-spot" stylesheets="@../assets/css/style.css" text="AUST" textAlignment="CENTER" />
+      <Label fx:id="lbl_spot3" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" styleClass="label-spot" stylesheets="@../assets/css/style.css" text="MOSKOV" textAlignment="CENTER" />
+      <Label fx:id="lbl_spot2" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" styleClass="label-spot" stylesheets="@../assets/css/style.css" text="AFROBEAT" textAlignment="CENTER" />
       <Label fx:id="lbl_questionNumber" layoutX="10.0" layoutY="651.0" prefHeight="20.0" prefWidth="120.0" text="Questao" />
       <Label fx:id="lbl_points" layoutX="10.0" layoutY="631.0" prefHeight="20.0" prefWidth="120.0" text="Pontos" />
       <Button fx:id="btn_confirmQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#confirmQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Confirmar" />
       <Pane fx:id="finishPane" layoutX="31.0" layoutY="294.0" prefHeight="358.0" prefWidth="893.0" styleClass="round" stylesheets="@../assets/css/style.css">
          <children>
-            <Button fx:id="btn_finishMenu" layoutX="362.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#submitAndMenu" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Confirmar" />
+            <Button layoutX="362.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#submitAndMenu" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Confirmar" />
             <Label id="finishTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="306.0" layoutY="31.0" prefHeight="18.0" prefWidth="281.0" stylesheets="@../assets/css/style.css" text="Você ganhou!!" textAlignment="CENTER" />
             <Label id="finishPoints" fx:id="finishPoints" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="111.0" prefHeight="18.0" prefWidth="272.0" stylesheets="@../assets/css/style.css" text="Pontos: 1000" textAlignment="CENTER" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="362.0" layoutY="170.0" prefHeight="18.0" prefWidth="170.0" text="Digite seu nome:" textAlignment="CENTER" />

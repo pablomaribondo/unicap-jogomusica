@@ -21,7 +21,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,14 +30,6 @@ import javafx.util.Duration;
 
 public class MenuController implements Initializable {
 
-    @FXML
-    private Button btn_play;
-    @FXML
-    private Button btn_instructions;
-    @FXML
-    private Button btn_pontuation;
-    @FXML
-    private Button btn_exit;
     @FXML
     private Slider volumeSlider;
     @FXML
@@ -58,11 +49,11 @@ public class MenuController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         if (!read) {
             initFile();
             initMusicGenres();
-            read=true;
+            read = true;
         }
         if (Menu.player == null) {
             Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/latinfide.mp3").toExternalForm());

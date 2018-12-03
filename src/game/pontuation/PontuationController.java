@@ -14,10 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -25,8 +23,6 @@ import javafx.stage.Stage;
 
 public class PontuationController implements Initializable {
 
-    @FXML
-    private Button btn_back;
     @FXML
     private Slider volumeSlider;
     @FXML

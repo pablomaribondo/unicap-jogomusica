@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="950.0" styleClass="main" stylesheets="@../assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.pontuation.PontuationController">
     <children>
-        <Button fx:id="btn_back" layoutX="62.0" layoutY="591.0" onAction="#back" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Voltar" />
+        <Button layoutX="62.0" layoutY="591.0" onAction="#back" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Voltar" />
         <Slider fx:id="volumeSlider" layoutX="780.0" layoutY="22.0" />
         <ImageView fx:id="img_volume" fitHeight="20.0" fitWidth="20.0" layoutX="750.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
             <image>

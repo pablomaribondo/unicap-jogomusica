@@ -89,9 +89,8 @@ public class PlayController implements Initializable {
     private Label finishPoints;
     @FXML
     private Button btn_menu;
-    @FXML
-    private Button finishMenu;
 
+    private static final int TOTALQUESTIONS = 6;
     private int questionNumber;
     private int totalPoints;
     private int questionPoints;
@@ -106,8 +105,6 @@ public class PlayController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Carrega a fonte
-        Font.loadFont(this.getClass().getResource("/game/assets/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
 
         // Deixa as imagens arredondadas
         roundImg();
@@ -233,7 +230,7 @@ public class PlayController implements Initializable {
         lbl_spot4.setTranslateY(img_spot4.getY() - 16);
         lbl_spot4.setText(genreList.get(3).getName());
         correctAnswerMusicGenre = genreList.get(0);
-        System.out.println(correctAnswerMusicGenre.getName());
+//        System.out.println(correctAnswerMusicGenre.getName());
         for (ImageView alternative : alternatives) {
             if (alternative.getId().equalsIgnoreCase(correctAnswerMusicGenre.getName())) {
                 correctAnswerSpot = alternative;
@@ -330,7 +327,6 @@ public class PlayController implements Initializable {
         });
         loadAlternatives();
         alternatives.forEach((alternative) -> {
-            System.out.println(alternative);
             alternative.setOnMouseClicked((MouseEvent e) -> {
                 try {
                     moveCharacter(e);
@@ -371,12 +367,12 @@ public class PlayController implements Initializable {
                     totalPoints += questionPoints;
                 }
                 lbl_points.setText("Pontos: " + String.format("%04d", totalPoints));
-                if (questionNumber != 2) {
+                if (questionNumber != TOTALQUESTIONS) {
                     setTimeout(() -> {
                         btn_nextQuestion.setVisible(true);
                     }, 1000);
                 }
-                if (questionNumber == 2) {
+                if (questionNumber == TOTALQUESTIONS) {
                     finishPane.setVisible(true);
                     finishPoints.setText("Pontuação total: " + String.format("%04d", totalPoints));
                     btn_playMusic.setOnMouseClicked(null);
@@ -402,6 +398,14 @@ public class PlayController implements Initializable {
         stage.setTitle("Menu");
 
         Menu.player.stop();
+
+        Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/latinfide.mp3").toExternalForm());
+        Menu.player = new MediaPlayer(Menu.media);
+        Menu.player.setVolume(0.8);
+        Menu.player.setOnEndOfMedia(() -> {
+            Menu.player.seek(Duration.ZERO);
+        });
+        Menu.player.play();
 
         stage.setScene(scene);
         stage.show();
