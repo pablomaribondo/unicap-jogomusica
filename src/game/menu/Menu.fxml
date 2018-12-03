@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="950.0" styleClass="main" stylesheets="@../assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.menu.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="950.0" stylesheets="@../assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.menu.MenuController">
     <children>
+      <ImageView fitHeight="639.0" fitWidth="950.0" layoutX="1.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/menu.png" />
+         </image>
+      </ImageView>
         <Button fx:id="btn_play" layoutX="62.0" layoutY="411.0" onAction="#play" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Jogar" />
         <Button fx:id="btn_instructions" layoutX="62.0" layoutY="471.0" onAction="#instructions" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Instruções" />
         <Button fx:id="btn_pontuation" layoutX="62.0" layoutY="531.0" onAction="#pontuation" prefHeight="40.0" prefWidth="120.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Pontuação" />
@@ -18,5 +25,70 @@
                 <Image url="@../assets/images/soundOnWhite.png" />
             </image>
         </ImageView>
+      <Label id="menuTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="186.0" prefHeight="18.0" prefWidth="439.0" text="TOUR MUSICAL" textAlignment="CENTER" />
+      <ImageView fitHeight="61.0" fitWidth="43.0" layoutX="705.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandJazz1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="35.0" layoutX="448.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandReggae3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="35.0" layoutX="382.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandReggae1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="43.0" layoutX="670.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandJazz4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="43.0" layoutX="552.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandJazz2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="43.0" layoutX="630.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandJazz3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="30.0" layoutX="483.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandReggae2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="32.0" layoutX="586.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandReggae4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="34.0" layoutX="522.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandRock3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="35.0" layoutX="417.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandRock1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="34.0" layoutX="310.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandRock2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="43.0" layoutX="258.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/bandRock4.png" />
+         </image>
+      </ImageView>
     </children>
+   <styleClass>
+      <String fx:value="main" />
+      <String fx:value="menu" />
+   </styleClass>
 </AnchorPane>

@@ -20,7 +20,7 @@
         </ImageView>
         <ImageView fx:id="img_character" fitHeight="97.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../assets/images/MainCharacter.png" />
+                <Image url="@../assets/images/mainCharacter.png" />
             </image>
         </ImageView>
       <Label id="questionTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="17.0" prefHeight="25.0" prefWidth="950.0" stylesheets="@../assets/css/style.css" text="Qual o estilo musical?">

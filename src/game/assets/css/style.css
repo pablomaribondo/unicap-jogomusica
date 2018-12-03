@@ -3,6 +3,10 @@
     -fx-font-family: "VCR OSD Mono";
 }
 
+.menu {
+    -fx-background-color: #4e4e4e;
+}
+
 .round {
     -fx-background-radius: 20;
     -fx-background-color: #398cc1;
@@ -56,6 +60,11 @@
 
 #questionTitle {
     -fx-font-size: 20px;
+    -fx-text-fill: #fff;
+}
+
+#menuTitle {
+    -fx-font-size: 50px;
     -fx-text-fill: #fff;
 }
 

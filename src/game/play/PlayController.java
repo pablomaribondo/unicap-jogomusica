@@ -158,7 +158,7 @@ public class PlayController implements Initializable {
         img_hint.setImage(image);
     }
 
-    public void animateText(Label text, String string) {
+    public static void animateText(Label text, String string) {
         String content = string;
         final Animation animation;
         animation = new Transition() {
