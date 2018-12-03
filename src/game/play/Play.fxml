@@ -2,12 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -30,9 +31,9 @@
       <StackPane layoutX="32.0" layoutY="57.0" prefHeight="186.0" prefWidth="491.0" styleClass="round" stylesheets="@../assets/css/style.css" />
       <ScrollPane id="scrollpane" layoutX="42.0" layoutY="67.0" prefHeight="160.0" prefWidth="465.0" styleClass="description-scrollpane">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0" stylesheets="@../assets/css/style.css">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="615.0" prefWidth="449.0" stylesheets="@../assets/css/style.css">
                <children>
-                  <Label fx:id="description" alignment="TOP_LEFT" prefHeight="400.0" prefWidth="451.0" styleClass="description-scrollpane" stylesheets="@../assets/css/style.css" />
+                  <Label fx:id="description" alignment="TOP_LEFT" prefHeight="628.0" prefWidth="451.0" styleClass="description-scrollpane" stylesheets="@../assets/css/style.css" />
                </children>
             </AnchorPane>
         </content>
@@ -40,10 +41,9 @@
       <Button id="btn_playmusic" fx:id="btn_playMusic" layoutX="750.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#playMusic" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Tocar música" />
       <Button fx:id="btn_showHint" layoutX="750.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#showPicture" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Mostrar foto" />
       <Button id="btn_playmusic" fx:id="btn_stopMusic" layoutX="750.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#stopMusic" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Parar música" />
-      <Button layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Menu" />
+      <Button fx:id="btn_menu" layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#menu" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Menu" />
       <Button fx:id="btn_nextQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#nextQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Próxima pergunta" />
       <Slider fx:id="volumeSlider" layoutX="780.0" layoutY="22.0" />
-      <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="651.0" prefWidth="200.0" progress="0.0" />
       <StackPane layoutX="542.0" layoutY="57.0" prefHeight="186.0" prefWidth="186.0" styleClass="round" stylesheets="@../assets/css/style.css" />
         <ImageView fx:id="img_hint" fitHeight="180.0" fitWidth="180.0" layoutX="545.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" styleClass="img-hint">
          <image>
@@ -79,8 +79,17 @@
       <Label fx:id="lbl_spot4" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="AUST" textAlignment="CENTER" />
       <Label fx:id="lbl_spot3" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="MOSKOV" textAlignment="CENTER" />
       <Label fx:id="lbl_spot2" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="140.0" text="AFROBEAT" textAlignment="CENTER" />
-      <Label fx:id="lbl_questionNumber" layoutX="14.0" layoutY="626.0" prefHeight="20.0" prefWidth="120.0" text="Questao" />
-      <Label fx:id="lbl_points" layoutX="14.0" layoutY="606.0" prefHeight="20.0" prefWidth="120.0" text="Pontos" />
+      <Label fx:id="lbl_questionNumber" layoutX="10.0" layoutY="651.0" prefHeight="20.0" prefWidth="120.0" text="Questao" />
+      <Label fx:id="lbl_points" layoutX="10.0" layoutY="631.0" prefHeight="20.0" prefWidth="120.0" text="Pontos" />
       <Button fx:id="btn_confirmQuestion" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#confirmQuestion" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Confirmar" />
+      <Pane fx:id="finishPane" layoutX="31.0" layoutY="294.0" prefHeight="358.0" prefWidth="893.0" styleClass="round" stylesheets="@../assets/css/style.css">
+         <children>
+            <Button fx:id="btn_finishMenu" layoutX="362.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#submitAndMenu" prefHeight="25.0" prefWidth="170.0" styleClass="round" stylesheets="@../assets/css/style.css" text="Confirmar" />
+            <Label id="finishTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="306.0" layoutY="31.0" prefHeight="18.0" prefWidth="281.0" stylesheets="@../assets/css/style.css" text="Você ganhou!!" textAlignment="CENTER" />
+            <Label id="finishPoints" fx:id="finishPoints" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="111.0" prefHeight="18.0" prefWidth="272.0" stylesheets="@../assets/css/style.css" text="Pontos: 1000" textAlignment="CENTER" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="362.0" layoutY="170.0" prefHeight="18.0" prefWidth="170.0" text="Digite seu nome:" textAlignment="CENTER" />
+            <TextField fx:id="nameInput" layoutX="362.0" layoutY="209.0" prefHeight="27.0" prefWidth="170.0" />
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

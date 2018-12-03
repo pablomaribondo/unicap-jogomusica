@@ -1,20 +1,25 @@
 package game.play;
 
+import java.util.Random;
+
 public class MusicGenre {
 
     private String name;
     private String description;
     private String imgUrl;
-    private String soundUrl;
+    private String[] soundUrl;
     private String outfitUrl;
     private int spotX;
     private int spotY;
 
-    public MusicGenre(String name, String description, String imgUrl, String soundUrl, String outfitUrl, int spotX, int spotY) {
+    public MusicGenre(String name, String description, String imgUrl, String soundUrl1, String soundUrl2, String soundUrl3, String outfitUrl, int spotX, int spotY) {
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
-        this.soundUrl = soundUrl;
+        this.soundUrl = new String[3];
+        this.soundUrl[0] = soundUrl1;
+        this.soundUrl[1] = soundUrl2;
+        this.soundUrl[2] = soundUrl3;
         this.outfitUrl = outfitUrl;
         this.spotX = spotX;
         this.spotY = spotY;
@@ -44,12 +49,20 @@ public class MusicGenre {
         this.imgUrl = imgUrl;
     }
 
-    public String getSoundUrl() {
+    public String[] getSoundUrl() {
         return soundUrl;
     }
+    
+    public String getRandomSoundUrl() {
+        Random randomno = new Random();
+        int choice = randomno.nextInt(3);
+        return soundUrl[choice];
+    }
 
-    public void setSoundUrl(String soundUrl) {
-        this.soundUrl = soundUrl;
+    public void setSoundUrl(String soundUrl1, String soundUrl2, String soundUrl3) {
+        this.soundUrl[0] = soundUrl1;
+        this.soundUrl[1] = soundUrl2;
+        this.soundUrl[2] = soundUrl3;
     }
 
     public String getOutfitUrl() {

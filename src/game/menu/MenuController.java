@@ -1,16 +1,17 @@
 package game.menu;
 
+import game.data.RegisterOnFile;
 import game.play.MusicGenre;
 import game.play.PlayController;
+import game.play.Player;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,8 +44,23 @@ public class MenuController implements Initializable {
     @FXML
     private ImageView img_volume;
 
+    private String fileName;
+
+    public static ArrayList<Player> players;
+    
+    private static boolean read = false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        try {
+            fileName = new File(".").getCanonicalPath() + "/src/game/data/players.dat";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        initFile();
+
         BufferedReader br = null;
         try {
             String line = "";
@@ -54,7 +70,7 @@ public class MenuController implements Initializable {
             while ((line = br.readLine()) != null) {
                 // use comma as separator
                 String[] musicGenre = line.split(cvsSplitBy);
-                MusicGenre mg = new MusicGenre(musicGenre[0], musicGenre[1], musicGenre[2], musicGenre[3], musicGenre[4], Integer.valueOf(musicGenre[5]), Integer.valueOf(musicGenre[6]));
+                MusicGenre mg = new MusicGenre(musicGenre[0], musicGenre[1], musicGenre[2], musicGenre[3], musicGenre[4], musicGenre[5], musicGenre[6], Integer.valueOf(musicGenre[7]), Integer.valueOf(musicGenre[8]));
                 PlayController.genreList.add(mg);
             }
         } catch (IOException e) {
@@ -70,7 +86,7 @@ public class MenuController implements Initializable {
         }
 
         if (Menu.player == null) {
-            Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
+            Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/latinfide.mp3").toExternalForm());
             Menu.player = new MediaPlayer(Menu.media);
             Menu.player.setVolume(0.8);
             Menu.player.setOnEndOfMedia(() -> {
@@ -91,6 +107,39 @@ public class MenuController implements Initializable {
             }
         });
 
+    }
+
+    private void initFile() {
+        if (players == null) {
+            players = new ArrayList<>();
+        }
+        
+        if(!read){
+            File file = new File(fileName);
+            Player player;
+
+            if (file.exists()) {
+                RegisterOnFile.openToRead(fileName);
+                do {
+                    player = RegisterOnFile.readObjectFromFile();
+                    if (player != null) {
+                        players.add(player);
+                    }
+                } while (player != null);
+                RegisterOnFile.closeAfterRead();
+            }
+            read = true;
+        }
+    }
+
+    private void closeFile() {
+        RegisterOnFile.openToWrite(fileName);
+        Collections.sort(players);
+        for (Player player : players) {
+            System.out.println(player);
+            RegisterOnFile.writeObjectOnFile(player);
+        }
+        RegisterOnFile.closeAfterWrite();
     }
 
     @FXML
@@ -137,6 +186,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void exit(ActionEvent event) {
+        closeFile();
         System.exit(0);
     }
 

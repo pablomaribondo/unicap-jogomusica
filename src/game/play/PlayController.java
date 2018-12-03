@@ -1,6 +1,7 @@
 package game.play;
 
 import game.menu.Menu;
+import game.menu.MenuController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,18 +14,20 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -79,7 +82,15 @@ public class PlayController implements Initializable {
     @FXML
     private Slider volumeSlider;
     @FXML
-    private ProgressBar progressBar;
+    private Pane finishPane;
+    @FXML
+    private TextField nameInput;
+    @FXML
+    private Label finishPoints;
+    @FXML
+    private Button btn_menu;
+    @FXML
+    private Button finishMenu;
 
     private int questionNumber;
     private int totalPoints;
@@ -97,10 +108,10 @@ public class PlayController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Carrega a fonte
         Font.loadFont(this.getClass().getResource("/game/assets/fonts/VCR_OSD_MONO_1.001.ttf").toExternalForm(), 12);
-        
+
         // Deixa as imagens arredondadas
         roundImg();
-        
+
         // Inicializa
         description.setWrapText(true);
         hintShown = false;
@@ -108,6 +119,8 @@ public class PlayController implements Initializable {
         btn_stopMusic.setOnMouseClicked(null);
         btn_nextQuestion.setVisible(false);
         btn_confirmQuestion.setVisible(false);
+        finishPane.setVisible(false);
+        nameInput.setAlignment(Pos.CENTER);
         questionNumber = 1;
         totalPoints = 0;
         questionPoints = 100;
@@ -115,7 +128,7 @@ public class PlayController implements Initializable {
         lbl_points.setText("Pontos: " + String.format("%04d", totalPoints));
 
         Collections.shuffle(genreList);
-        
+
         // Inicializa a personagem
         img_character.setImage(new Image("/game/assets/images/mainCharacter.png"));
         img_character.setX(genreList.get(1).getSpotX() + 40);
@@ -187,7 +200,7 @@ public class PlayController implements Initializable {
         }).start();
     }
 
-    private void loadAlternatives() {
+    public void loadAlternatives() {
         alternatives.clear();
         alternatives.add(img_spot1);
         alternatives.add(img_spot2);
@@ -195,28 +208,38 @@ public class PlayController implements Initializable {
         alternatives.add(img_spot4);
         Collections.shuffle(alternatives);
         Collections.shuffle(genreList);
-        correctAnswerSpot = img_spot1;
-        correctAnswerMusicGenre = genreList.get(0);
         img_spot1.setX(genreList.get(0).getSpotX());
         img_spot1.setY(genreList.get(0).getSpotY());
+        img_spot1.setId(genreList.get(0).getName());
         lbl_spot1.setTranslateX(img_spot1.getX() - 53);
         lbl_spot1.setTranslateY(img_spot1.getY() - 16);
         lbl_spot1.setText(genreList.get(0).getName());
         img_spot2.setX(genreList.get(1).getSpotX());
         img_spot2.setY(genreList.get(1).getSpotY());
+        img_spot2.setId(genreList.get(1).getName());
         lbl_spot2.setTranslateX(img_spot2.getX() - 53);
         lbl_spot2.setTranslateY(img_spot2.getY() - 16);
         lbl_spot2.setText(genreList.get(1).getName());
         img_spot3.setX(genreList.get(2).getSpotX());
         img_spot3.setY(genreList.get(2).getSpotY());
+        img_spot3.setId(genreList.get(2).getName());
         lbl_spot3.setTranslateX(img_spot3.getX() - 53);
         lbl_spot3.setTranslateY(img_spot3.getY() - 16);
         lbl_spot3.setText(genreList.get(2).getName());
         img_spot4.setX(genreList.get(3).getSpotX());
         img_spot4.setY(genreList.get(3).getSpotY());
+        img_spot4.setId(genreList.get(3).getName());
         lbl_spot4.setTranslateX(img_spot4.getX() - 53);
         lbl_spot4.setTranslateY(img_spot4.getY() - 16);
         lbl_spot4.setText(genreList.get(3).getName());
+        correctAnswerMusicGenre = genreList.get(0);
+        System.out.println(correctAnswerMusicGenre.getName());
+        for (ImageView alternative : alternatives) {
+            if (alternative.getId().equalsIgnoreCase(correctAnswerMusicGenre.getName())) {
+                correctAnswerSpot = alternative;
+                break;
+            }
+        }
     }
 
     @FXML
@@ -261,7 +284,7 @@ public class PlayController implements Initializable {
     @FXML
     private void showPicture(MouseEvent event) {
         if (!hintShown) {
-            img_hint.setImage(new Image("/game/assets/images/frevo.png"));
+            img_hint.setImage(new Image(correctAnswerMusicGenre.getImgUrl()));
             roundImg();
             hintShown = true;
         }
@@ -269,7 +292,7 @@ public class PlayController implements Initializable {
 
     @FXML
     private void playMusic(MouseEvent event) {
-        Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/frevo.mp3").toExternalForm());
+        Menu.media = new Media(this.getClass().getResource(correctAnswerMusicGenre.getRandomSoundUrl()).toExternalForm());
         Menu.player = new MediaPlayer(Menu.media);
         Menu.player.setVolume(volumeSlider.getValue() / 100);
         Menu.player.play();
@@ -296,9 +319,7 @@ public class PlayController implements Initializable {
         hintShown = false;
         arrived = false;
         questionPoints = 100;
-        Collections.shuffle(genreList);
         lbl_questionNumber.setText("Questão: " + String.format("%02d", ++questionNumber));
-        description.setText("");
         img_hint.setImage(new Image("/game/assets/images/questionmark.png"));
         roundImg();
         btn_showHint.setOnMouseClicked((MouseEvent e) -> {
@@ -309,6 +330,7 @@ public class PlayController implements Initializable {
         });
         loadAlternatives();
         alternatives.forEach((alternative) -> {
+            System.out.println(alternative);
             alternative.setOnMouseClicked((MouseEvent e) -> {
                 try {
                     moveCharacter(e);
@@ -318,6 +340,7 @@ public class PlayController implements Initializable {
             });
             alternative.setImage(new Image("/game/assets/images/mapPin.png"));
         });
+        description.setText("");
         btn_nextQuestion.setVisible(false);
     }
 
@@ -328,7 +351,7 @@ public class PlayController implements Initializable {
                 characterTarget.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
                 characterTarget.setOnMouseClicked(null);
                 animateText(description, "Você errou! Tente novamente.");
-                alternatives.remove(characterTarget);
+//                alternatives.remove(characterTarget);
                 characterTarget = null;
                 questionPoints -= 25;
             } else {
@@ -337,6 +360,7 @@ public class PlayController implements Initializable {
                     alternative.setOnMouseClicked(null);
                     alternative.setImage(new Image("/game/assets/images/mapPinDisabled.png"));
                 });
+                alternatives.add(characterTarget);
                 animateText(description, correctAnswerMusicGenre.getDescription());
                 img_character.setImage(new Image(correctAnswerMusicGenre.getOutfitUrl()));
                 btn_confirmQuestion.setVisible(false);
@@ -347,9 +371,23 @@ public class PlayController implements Initializable {
                     totalPoints += questionPoints;
                 }
                 lbl_points.setText("Pontos: " + String.format("%04d", totalPoints));
-                setTimeout(() -> {
-                    btn_nextQuestion.setVisible(true);
-                }, 1000);
+                if (questionNumber != 2) {
+                    setTimeout(() -> {
+                        btn_nextQuestion.setVisible(true);
+                    }, 1000);
+                }
+                if (questionNumber == 2) {
+                    finishPane.setVisible(true);
+                    finishPoints.setText("Pontuação total: " + String.format("%04d", totalPoints));
+                    btn_playMusic.setOnMouseClicked(null);
+                    btn_stopMusic.setOnMouseClicked(null);
+                    btn_showHint.setOnMouseClicked(null);
+                    btn_confirmQuestion.setOnMouseClicked(null);
+                    btn_nextQuestion.setOnMouseClicked(null);
+                    btn_confirmQuestion.setVisible(false);
+                    btn_nextQuestion.setVisible(false);
+                    btn_menu.setOnMouseClicked(null);
+                }
             }
         }
     }
@@ -367,6 +405,12 @@ public class PlayController implements Initializable {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void submitAndMenu(MouseEvent event) throws IOException {
+        MenuController.players.add(new Player(nameInput.getText(), totalPoints));
+        menu(event);
     }
 
 }

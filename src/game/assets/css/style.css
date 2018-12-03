@@ -64,7 +64,12 @@
 }
 
 #menuTitle {
-    -fx-font-size: 50px;
+    -fx-font-size: 60px;
     -fx-text-fill: #fff;
+}
+
+#menuTitle .text {
+    -fx-stroke: #4e4e4e;
+    -fx-stroke-width: 2;
 }
 

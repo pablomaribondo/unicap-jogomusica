@@ -25,7 +25,7 @@
                 <Image url="@../assets/images/soundOnWhite.png" />
             </image>
         </ImageView>
-      <Label id="menuTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="186.0" prefHeight="18.0" prefWidth="439.0" text="TOUR MUSICAL" textAlignment="CENTER" />
+      <Label id="menuTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="188.0" prefHeight="18.0" prefWidth="439.0" text="TOUR MUSICAL" textAlignment="CENTER" />
       <ImageView fitHeight="61.0" fitWidth="43.0" layoutX="705.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/images/bandJazz1.png" />
