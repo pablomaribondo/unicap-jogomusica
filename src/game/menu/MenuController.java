@@ -47,7 +47,7 @@ public class MenuController implements Initializable {
     private String fileName;
 
     public static ArrayList<Player> players;
-    
+
     private static boolean read = false;
 
     @Override
@@ -58,33 +58,12 @@ public class MenuController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        initFile();
-
-        BufferedReader br = null;
-        try {
-            String line = "";
-            String cvsSplitBy = ";";
-            String csvFile = new File(".").getCanonicalPath() + "/src/game/data/musicGenres.csv";
-            br = new BufferedReader(new FileReader(csvFile));
-            while ((line = br.readLine()) != null) {
-                // use comma as separator
-                String[] musicGenre = line.split(cvsSplitBy);
-                MusicGenre mg = new MusicGenre(musicGenre[0], musicGenre[1], musicGenre[2], musicGenre[3], musicGenre[4], musicGenre[5], musicGenre[6], Integer.valueOf(musicGenre[7]), Integer.valueOf(musicGenre[8]));
-                PlayController.genreList.add(mg);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        
+        if (!read) {
+            initFile();
+            initMusicGenres();
+            read=true;
         }
-
         if (Menu.player == null) {
             Menu.media = new Media(this.getClass().getResource("/game/assets/sounds/latinfide.mp3").toExternalForm());
             Menu.player = new MediaPlayer(Menu.media);
@@ -109,26 +88,48 @@ public class MenuController implements Initializable {
 
     }
 
+    private void initMusicGenres() {
+        BufferedReader br = null;
+        try {
+            String line = "";
+            String cvsSplitBy = ";";
+            String csvFile = new File(".").getCanonicalPath() + "/src/game/data/musicGenres.csv";
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+                // use comma as separator
+                String[] musicGenre = line.split(cvsSplitBy);
+                MusicGenre mg = new MusicGenre(musicGenre[0], musicGenre[1], musicGenre[2], musicGenre[3], musicGenre[4], musicGenre[5], musicGenre[6], Integer.valueOf(musicGenre[7]), Integer.valueOf(musicGenre[8]));
+                PlayController.genreList.add(mg);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     private void initFile() {
         if (players == null) {
             players = new ArrayList<>();
         }
-        
-        if(!read){
-            File file = new File(fileName);
-            Player player;
+        File file = new File(fileName);
+        Player player;
 
-            if (file.exists()) {
-                RegisterOnFile.openToRead(fileName);
-                do {
-                    player = RegisterOnFile.readObjectFromFile();
-                    if (player != null) {
-                        players.add(player);
-                    }
-                } while (player != null);
-                RegisterOnFile.closeAfterRead();
-            }
-            read = true;
+        if (file.exists()) {
+            RegisterOnFile.openToRead(fileName);
+            do {
+                player = RegisterOnFile.readObjectFromFile();
+                if (player != null) {
+                    players.add(player);
+                }
+            } while (player != null);
+            RegisterOnFile.closeAfterRead();
         }
     }
 
